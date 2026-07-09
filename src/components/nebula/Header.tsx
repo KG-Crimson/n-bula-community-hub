@@ -50,13 +50,16 @@ export function Header() {
         </button>
       </div>
       {open && (
-        <div className="md:hidden border-t border-gold/20 bg-background/95 px-4 py-4 flex flex-col gap-4">
+        <div className="md:hidden border-t border-gold/20 bg-background/95 px-4 py-4 flex flex-col gap-2">
           {NAV.map((n) => (
             <Link
               key={n.to}
               to={n.to}
               onClick={() => setOpen(false)}
-              className="text-sm font-semibold tracking-widest text-foreground/90"
+              activeOptions={{ exact: true }}
+              activeProps={{ className: "text-gold-bright bg-gold/10" }}
+              inactiveProps={{ className: "text-foreground/80" }}
+              className="px-3 py-2 rounded-lg text-sm font-semibold tracking-widest transition-colors"
             >
               {n.label}
             </Link>
