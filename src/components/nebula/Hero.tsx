@@ -1,5 +1,6 @@
 import logo from "@/assets/nebula-logo.png";
 import { Bell, Users, Activity } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export function Hero() {
   return (
@@ -25,9 +26,9 @@ export function Hero() {
         </p>
 
         <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <a href="#torneos" className="btn-gold hover:btn-gold-hover rounded-full px-7 py-3 text-xs font-bold tracking-widest">
+          <Link to="/torneos" className="btn-gold hover:btn-gold-hover rounded-full px-7 py-3 text-xs font-bold tracking-widest">
             VER TORNEOS
-          </a>
+          </Link>
           <a href="https://discord.gg/GDPyeD7A3R" target="_blank" rel="noopener noreferrer" className="rounded-full border border-gold/40 px-7 py-3 text-xs font-bold tracking-widest text-foreground hover:bg-gold/10 transition-colors">
             UNIRSE AL DISCORD
           </a>
