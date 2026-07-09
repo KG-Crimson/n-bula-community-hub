@@ -4,10 +4,11 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import bg from "@/assets/nebula-bg.jpg";
@@ -119,6 +120,24 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+function PageTransition({ children }: { children: ReactNode }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    firstRender.current = false;
+  }, []);
+
+  return (
+    <div
+      key={pathname}
+      className={firstRender.current ? undefined : "animate-page-enter"}
+    >
+      {children}
+    </div>
+  );
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
@@ -140,7 +159,9 @@ function RootComponent() {
         <Header />
         <main>
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <Outlet />
+          <PageTransition>
+            <Outlet />
+          </PageTransition>
         </main>
         <Footer />
       </div>

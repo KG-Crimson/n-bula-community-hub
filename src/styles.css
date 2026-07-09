@@ -227,7 +227,13 @@
   50% { box-shadow: 0 0 40px oklch(0.90 0.18 90 / 0.8); }
 }
 
+@keyframes page-enter {
+  0% { opacity: 0; transform: translateY(14px) scale(0.985); filter: blur(2px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
 @utility animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
 @utility animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
 @utility animate-pulse-gold { animation: pulse-gold 2.5s ease-in-out infinite; }
+@utility animate-page-enter { animation: page-enter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
