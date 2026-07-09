@@ -53,11 +53,11 @@ function MultimediaPage() {
                 <Palette className="h-16 w-16 text-white/80" />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent opacity-90" />
-              <figcaption className="absolute bottom-0 left-0 right-0 p-4">
-                <div className="font-display text-base sm:text-lg text-foreground truncate">{a.title}</div>
-                <div className="flex items-center justify-between mt-1">
-                  <span className="text-xs text-gold tracking-widest">{a.artist}</span>
-                  <span className="inline-flex items-center gap-1 text-xs text-pink">
+              <figcaption className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                <div className="font-display text-sm sm:text-base md:text-lg text-foreground truncate">{a.title}</div>
+                <div className="flex items-center justify-between mt-1 gap-2">
+                  <span className="text-[10px] sm:text-xs text-gold tracking-widest truncate">{a.artist}</span>
+                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs text-pink shrink-0">
                     <Heart className="h-3 w-3 fill-current" /> {a.likes}
                   </span>
                 </div>
