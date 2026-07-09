@@ -120,13 +120,13 @@ export function HallOfFame() {
 
 function ChampionCard({ champ }: { champ: Champion }) {
   return (
-    <article className="group card-nebula rounded-2xl p-6 relative overflow-hidden transition-transform hover:-translate-y-1">
+    <article className="group card-nebula rounded-2xl p-4 sm:p-6 relative overflow-hidden transition-transform hover:-translate-y-1">
       <div className="absolute inset-0 rounded-2xl border border-gold/40 pointer-events-none" />
       <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-primary/30 blur-3xl" />
 
-      <header className="relative flex items-center gap-4 mb-5">
-        <div className="relative">
-          <div className="h-14 w-14 rounded-full btn-gold p-[2px]">
+      <header className="relative grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 sm:gap-4 mb-5">
+        <div className="relative shrink-0">
+          <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-full btn-gold p-[2px]">
             <div className="h-full w-full rounded-full bg-background grid place-items-center overflow-hidden">
               <img
                 src={`https://api.dicebear.com/9.x/adventurer/svg?seed=${champ.avatarSeed}&backgroundColor=6b21a8,7c3aed,9333ea`}
@@ -136,12 +136,12 @@ function ChampionCard({ champ }: { champ: Champion }) {
               />
             </div>
           </div>
-          <div className="absolute -bottom-1 -right-1 h-6 w-6 rounded-full bg-pink grid place-items-center shadow-[0_0_12px_oklch(0.72_0.24_350/0.8)]">
-            <Crown className="h-3.5 w-3.5 text-background" />
+          <div className="absolute -bottom-1 -right-1 h-5 w-5 sm:h-6 sm:w-6 rounded-full bg-pink grid place-items-center shadow-[0_0_12px_oklch(0.72_0.24_350/0.8)]">
+            <Crown className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-background" />
           </div>
         </div>
         <div className="min-w-0">
-          <div className="font-display text-xl text-foreground truncate">{champ.handle}</div>
+          <div className="font-display text-lg sm:text-xl text-foreground truncate">{champ.handle}</div>
           <div className="text-xs text-muted-foreground truncate">
             {champ.tournament} <span className="text-gold">·</span> {champ.date}
           </div>
@@ -150,7 +150,7 @@ function ChampionCard({ champ }: { champ: Champion }) {
 
       <div className="relative">
         <div className="text-[10px] font-bold tracking-[0.3em] text-gold/80 mb-3">EQUIPO CAMPEÓN</div>
-        <div className="grid grid-cols-6 gap-2">
+        <div className="grid grid-cols-3 xs:grid-cols-6 sm:grid-cols-6 gap-2">
           {champ.team.map((p) => (
             <div
               key={p.id}
