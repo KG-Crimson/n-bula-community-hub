@@ -100,13 +100,15 @@ export function HallOfFame() {
           <div className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.4em] text-gold mb-3">
             <Crown className="h-3.5 w-3.5" /> LEGADO
           </div>
-          <h2 className="font-display text-4xl md:text-6xl text-gold-gradient mb-4">SALÓN DE LA FAMA</h2>
-          <p className="text-muted-foreground text-sm md:text-base">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-6xl text-gold-gradient mb-4">
+            SALÓN DE LA FAMA
+          </h2>
+          <p className="text-muted-foreground text-sm md:text-base px-4">
             Conoce a nuestros campeones legendarios.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {CHAMPS.map((c) => (
             <ChampionCard key={c.handle} champ={c} />
           ))}
