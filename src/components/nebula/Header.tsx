@@ -19,7 +19,7 @@ export function Header() {
           <span className="inline-block h-2 w-2 rounded-full bg-pink animate-pulse-gold" />
           NÉBULA
         </Link>
-        <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+        <nav className="hidden lg:flex items-center gap-1 lg:gap-2">
           {NAV.map((n) => (
             <Link
               key={n.to}
@@ -27,7 +27,7 @@ export function Header() {
               activeOptions={{ exact: true }}
               activeProps={{ className: "text-gold-bright bg-gold/10 shadow-[0_0_12px_-2px_var(--gold-bright)]" }}
               inactiveProps={{ className: "text-foreground/70 hover:text-gold hover:bg-gold/5" }}
-              className="px-3 py-1.5 rounded-full text-xs font-semibold tracking-[0.18em] transition-all duration-200"
+              className="px-3 py-1.5 rounded-full text-xs font-semibold tracking-[0.18em] transition-all duration-200 whitespace-nowrap"
             >
               {n.label}
             </Link>
@@ -37,12 +37,12 @@ export function Header() {
           href="https://discord.gg/GDPyeD7A3R"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden sm:inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-bold tracking-widest btn-gold hover:btn-gold-hover"
+          className="hidden lg:inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-bold tracking-widest btn-gold hover:btn-gold-hover whitespace-nowrap"
         >
           UNIRSE AL DISCORD
         </a>
         <button
-          className="md:hidden text-gold"
+          className="lg:hidden text-gold p-1"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -50,7 +50,7 @@ export function Header() {
         </button>
       </div>
       {open && (
-        <div className="md:hidden border-t border-gold/20 bg-background/95 px-4 py-4 flex flex-col gap-2">
+        <div className="lg:hidden border-t border-gold/20 bg-background/95 px-4 py-4 flex flex-col gap-2">
           {NAV.map((n) => (
             <Link
               key={n.to}
