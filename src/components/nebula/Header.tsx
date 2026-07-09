@@ -19,15 +19,15 @@ export function Header() {
           <span className="inline-block h-2 w-2 rounded-full bg-pink animate-pulse-gold" />
           NÉBULA
         </Link>
-        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+        <nav className="hidden md:flex items-center gap-1 lg:gap-2">
           {NAV.map((n) => (
             <Link
               key={n.to}
               to={n.to}
               activeOptions={{ exact: true }}
-              activeProps={{ className: "text-gold" }}
-              inactiveProps={{ className: "text-foreground/80" }}
-              className="text-xs font-semibold tracking-[0.2em] hover:text-gold transition-colors"
+              activeProps={{ className: "text-gold-bright bg-gold/10 shadow-[0_0_12px_-2px_var(--gold-bright)]" }}
+              inactiveProps={{ className: "text-foreground/70 hover:text-gold hover:bg-gold/5" }}
+              className="px-3 py-1.5 rounded-full text-xs font-semibold tracking-[0.18em] transition-all duration-200"
             >
               {n.label}
             </Link>
@@ -50,13 +50,16 @@ export function Header() {
         </button>
       </div>
       {open && (
-        <div className="md:hidden border-t border-gold/20 bg-background/95 px-4 py-4 flex flex-col gap-4">
+        <div className="md:hidden border-t border-gold/20 bg-background/95 px-4 py-4 flex flex-col gap-2">
           {NAV.map((n) => (
             <Link
               key={n.to}
               to={n.to}
               onClick={() => setOpen(false)}
-              className="text-sm font-semibold tracking-widest text-foreground/90"
+              activeOptions={{ exact: true }}
+              activeProps={{ className: "text-gold-bright bg-gold/10" }}
+              inactiveProps={{ className: "text-foreground/80" }}
+              className="px-3 py-2 rounded-lg text-sm font-semibold tracking-widest transition-colors"
             >
               {n.label}
             </Link>
