@@ -9,8 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TorneosRouteImport } from './routes/torneos'
+import { Route as SalonRouteImport } from './routes/salon'
+import { Route as MultimediaRouteImport } from './routes/multimedia'
+import { Route as AnunciosRouteImport } from './routes/anuncios'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TorneosRoute = TorneosRouteImport.update({
+  id: '/torneos',
+  path: '/torneos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SalonRoute = SalonRouteImport.update({
+  id: '/salon',
+  path: '/salon',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MultimediaRoute = MultimediaRouteImport.update({
+  id: '/multimedia',
+  path: '/multimedia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnunciosRoute = AnunciosRouteImport.update({
+  id: '/anuncios',
+  path: '/anuncios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +43,72 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/anuncios': typeof AnunciosRoute
+  '/multimedia': typeof MultimediaRoute
+  '/salon': typeof SalonRoute
+  '/torneos': typeof TorneosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/anuncios': typeof AnunciosRoute
+  '/multimedia': typeof MultimediaRoute
+  '/salon': typeof SalonRoute
+  '/torneos': typeof TorneosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/anuncios': typeof AnunciosRoute
+  '/multimedia': typeof MultimediaRoute
+  '/salon': typeof SalonRoute
+  '/torneos': typeof TorneosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/anuncios' | '/multimedia' | '/salon' | '/torneos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/anuncios' | '/multimedia' | '/salon' | '/torneos'
+  id: '__root__' | '/' | '/anuncios' | '/multimedia' | '/salon' | '/torneos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnunciosRoute: typeof AnunciosRoute
+  MultimediaRoute: typeof MultimediaRoute
+  SalonRoute: typeof SalonRoute
+  TorneosRoute: typeof TorneosRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/torneos': {
+      id: '/torneos'
+      path: '/torneos'
+      fullPath: '/torneos'
+      preLoaderRoute: typeof TorneosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/salon': {
+      id: '/salon'
+      path: '/salon'
+      fullPath: '/salon'
+      preLoaderRoute: typeof SalonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/multimedia': {
+      id: '/multimedia'
+      path: '/multimedia'
+      fullPath: '/multimedia'
+      preLoaderRoute: typeof MultimediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anuncios': {
+      id: '/anuncios'
+      path: '/anuncios'
+      fullPath: '/anuncios'
+      preLoaderRoute: typeof AnunciosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +121,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnunciosRoute: AnunciosRoute,
+  MultimediaRoute: MultimediaRoute,
+  SalonRoute: SalonRoute,
+  TorneosRoute: TorneosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

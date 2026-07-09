@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 const NAV = [
-  { label: "INICIO", href: "#inicio" },
-  { label: "TORNEOS", href: "#torneos" },
-  { label: "SALÓN DE LA FAMA", href: "#salon" },
+  { label: "INICIO", to: "/" as const },
+  { label: "TORNEOS", to: "/torneos" as const },
+  { label: "ANUNCIOS", to: "/anuncios" as const },
+  { label: "MULTIMEDIA", to: "/multimedia" as const },
+  { label: "SALÓN DE LA FAMA", to: "/salon" as const },
 ];
 
 export function Header() {
@@ -12,19 +15,22 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 backdrop-blur-xl border-b border-gold/20 bg-background/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        <a href="#inicio" className="flex items-center gap-2 font-display text-xl tracking-widest text-gold-gradient">
+        <Link to="/" className="flex items-center gap-2 font-display text-xl tracking-widest text-gold-gradient">
           <span className="inline-block h-2 w-2 rounded-full bg-pink animate-pulse-gold" />
           NÉBULA
-        </a>
-        <nav className="hidden md:flex items-center gap-8">
+        </Link>
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
           {NAV.map((n) => (
-            <a
-              key={n.href}
-              href={n.href}
-              className="text-xs font-semibold tracking-[0.2em] text-foreground/80 hover:text-gold transition-colors"
+            <Link
+              key={n.to}
+              to={n.to}
+              activeOptions={{ exact: true }}
+              activeProps={{ className: "text-gold" }}
+              inactiveProps={{ className: "text-foreground/80" }}
+              className="text-xs font-semibold tracking-[0.2em] hover:text-gold transition-colors"
             >
               {n.label}
-            </a>
+            </Link>
           ))}
         </nav>
         <a
@@ -46,9 +52,14 @@ export function Header() {
       {open && (
         <div className="md:hidden border-t border-gold/20 bg-background/95 px-4 py-4 flex flex-col gap-4">
           {NAV.map((n) => (
-            <a key={n.href} href={n.href} className="text-sm font-semibold tracking-widest text-foreground/90">
+            <Link
+              key={n.to}
+              to={n.to}
+              onClick={() => setOpen(false)}
+              className="text-sm font-semibold tracking-widest text-foreground/90"
+            >
               {n.label}
-            </a>
+            </Link>
           ))}
           <a href="https://discord.gg/GDPyeD7A3R" target="_blank" rel="noopener noreferrer" className="rounded-full px-5 py-2 text-xs font-bold tracking-widest btn-gold text-center">
             UNIRSE AL DISCORD
