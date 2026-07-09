@@ -124,8 +124,26 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="relative min-h-screen text-foreground">
+        <div
+          className="fixed inset-0 -z-20 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: `url(${bg})` }}
+          aria-hidden
+        />
+        <div
+          className="fixed inset-0 -z-10"
+          style={{ background: "var(--gradient-cosmic)" }}
+          aria-hidden
+        />
+        <div className="fixed inset-0 -z-10 bg-background/55" aria-hidden />
+        <StarField />
+        <Header />
+        <main>
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </QueryClientProvider>
   );
 }
