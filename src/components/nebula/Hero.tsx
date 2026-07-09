@@ -34,27 +34,26 @@ export function Hero() {
           </a>
         </div>
 
-        {/* Server status widget */}
-        <div className="mt-16 mx-auto max-w-3xl card-nebula rounded-2xl p-6 md:p-7">
-          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:flex sm:justify-between">
-            <div className="flex min-w-0 items-center gap-4">
-              <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-primary-glow shadow-[0_0_24px_oklch(0.65_0.24_305/0.6)]">
-                <svg viewBox="0 0 24 24" className="h-8 w-8 text-primary-foreground" fill="currentColor">
+        <div className="mt-14 sm:mt-16 mx-auto max-w-3xl card-nebula rounded-2xl p-5 sm:p-6 md:p-7">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+            <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+              <div className="grid h-12 w-12 sm:h-14 sm:w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-primary-glow shadow-[0_0_24px_oklch(0.65_0.24_305/0.6)]">
+                <svg viewBox="0 0 24 24" className="h-7 w-7 sm:h-8 sm:w-8 text-primary-foreground" fill="currentColor">
                   <path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5L12 2zm0 8a4 4 0 100 8 4 4 0 000-8z" />
                 </svg>
               </div>
               <div className="min-w-0 text-left">
                 <div className="text-[10px] font-semibold tracking-[0.25em] text-gold">SERVIDOR EN VIVO</div>
-                <div className="truncate font-display text-lg md:text-xl text-foreground">Nébula · Pokémon Hub</div>
+                <div className="truncate font-display text-base sm:text-lg md:text-xl text-foreground">Nébula · Pokémon Hub</div>
               </div>
             </div>
-            <div className="flex items-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-6 sm:gap-6 pl-1 sm:pl-0">
               <Stat icon={<Users size={16} />} value="771" label="MIEMBROS" tone="gold" />
               <Stat icon={<Activity size={16} />} value="148" label="ONLINE" tone="green" />
             </div>
           </div>
           <div className="mt-5 pt-5 border-t border-gold/15 flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4">
               <Badge icon={<PinkBoost />} label="16 Boosts" />
               <Badge icon={<Bell size={14} className="text-gold" />} label="Notificaciones" />
             </div>
