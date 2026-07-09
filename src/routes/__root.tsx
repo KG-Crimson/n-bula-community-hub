@@ -77,14 +77,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Nébula — Comunidad Discord de Pokémon" },
+      { name: "description", content: "Bienvenido a Nébula, el lugar favorito de los fans de Pokémon. Torneos, Salón de la Fama y una comunidad legendaria." },
+      { property: "og:title", content: "Nébula — Comunidad Discord de Pokémon" },
+      { property: "og:description", content: "Torneos competitivos, Salón de la Fama y una comunidad mística para fans de Pokémon." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
