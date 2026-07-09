@@ -28,7 +28,9 @@ export function Header() {
           ))}
         </nav>
         <a
-          href="#"
+          href="https://discord.gg/GDPyeD7A3R"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hidden sm:inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-bold tracking-widest btn-gold hover:btn-gold-hover"
         >
           UNIRSE AL DISCORD
@@ -48,7 +50,7 @@ export function Header() {
               {n.label}
             </a>
           ))}
-          <a href="#" className="rounded-full px-5 py-2 text-xs font-bold tracking-widest btn-gold text-center">
+          <a href="https://discord.gg/GDPyeD7A3R" target="_blank" rel="noopener noreferrer" className="rounded-full px-5 py-2 text-xs font-bold tracking-widest btn-gold text-center">
             UNIRSE AL DISCORD
           </a>
         </div>
