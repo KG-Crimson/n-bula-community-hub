@@ -74,7 +74,7 @@ const CHAMPS: Champion[] = [
 export function HallOfFame() {
   return (
     <section id="salon" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Constellation decorations */}
+      {/* Constellation decorations - responsive scale/position so they never overlap content */}
       <img
         src={solgaleo}
         alt=""
@@ -82,7 +82,7 @@ export function HallOfFame() {
         loading="lazy"
         width={512}
         height={512}
-        className="hidden lg:block pointer-events-none absolute left-0 top-40 w-72 opacity-25 animate-float-slow"
+        className="pointer-events-none absolute -left-12 sm:left-0 top-20 sm:top-24 md:top-32 lg:top-40 w-40 sm:w-48 md:w-64 lg:w-72 opacity-15 sm:opacity-20 lg:opacity-25 animate-float-slow z-0"
       />
       <img
         src={lunala}
@@ -91,11 +91,11 @@ export function HallOfFame() {
         loading="lazy"
         width={512}
         height={512}
-        className="hidden lg:block pointer-events-none absolute right-0 top-72 w-80 opacity-25 animate-float-slow"
+        className="pointer-events-none absolute -right-12 sm:right-0 top-32 sm:top-40 md:top-56 lg:top-72 w-44 sm:w-52 md:w-72 lg:w-80 opacity-15 sm:opacity-20 lg:opacity-25 animate-float-slow z-0"
         style={{ animationDelay: "2s" }}
       />
 
-      <div className="mx-auto max-w-6xl relative">
+      <div className="mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.4em] text-gold mb-3">
             <Crown className="h-3.5 w-3.5" /> LEGADO
