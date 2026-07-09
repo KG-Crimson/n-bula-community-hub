@@ -237,3 +237,12 @@
 @utility animate-pulse-gold { animation: pulse-gold 2.5s ease-in-out infinite; }
 @utility animate-page-enter { animation: page-enter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-page-enter {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
