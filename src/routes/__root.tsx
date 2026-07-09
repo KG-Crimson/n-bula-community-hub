@@ -10,7 +10,11 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import bg from "@/assets/nebula-bg.jpg";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Header } from "@/components/nebula/Header";
+import { Footer } from "@/components/nebula/Footer";
+import { StarField } from "@/components/nebula/StarField";
 
 function NotFoundComponent() {
   return (
