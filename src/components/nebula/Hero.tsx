@@ -28,7 +28,7 @@ export function Hero() {
           <a href="#torneos" className="btn-gold hover:btn-gold-hover rounded-full px-7 py-3 text-xs font-bold tracking-widest">
             VER TORNEOS
           </a>
-          <a href="#" className="rounded-full border border-gold/40 px-7 py-3 text-xs font-bold tracking-widest text-foreground hover:bg-gold/10 transition-colors">
+          <a href="https://discord.gg/GDPyeD7A3R" target="_blank" rel="noopener noreferrer" className="rounded-full border border-gold/40 px-7 py-3 text-xs font-bold tracking-widest text-foreground hover:bg-gold/10 transition-colors">
             UNIRSE AL DISCORD
           </a>
         </div>
