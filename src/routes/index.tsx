@@ -1,24 +1,40 @@
 import { createFileRoute } from "@tanstack/react-router";
+import bg from "@/assets/nebula-bg.jpg";
+import { Header } from "@/components/nebula/Header";
+import { Hero } from "@/components/nebula/Hero";
+import { TournamentBracket } from "@/components/nebula/TournamentBracket";
+import { HallOfFame } from "@/components/nebula/HallOfFame";
+import { Footer } from "@/components/nebula/Footer";
+import { StarField } from "@/components/nebula/StarField";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
+    <div className="relative min-h-screen text-foreground">
+      {/* Cosmic background */}
+      <div
+        className="fixed inset-0 -z-20 bg-cover bg-center bg-fixed"
+        style={{ backgroundImage: `url(${bg})` }}
+        aria-hidden
       />
+      <div
+        className="fixed inset-0 -z-10"
+        style={{ background: "var(--gradient-cosmic)" }}
+        aria-hidden
+      />
+      <div className="fixed inset-0 -z-10 bg-background/55" aria-hidden />
+      <StarField />
+
+      <Header />
+      <main>
+        <Hero />
+        <TournamentBracket />
+        <HallOfFame />
+      </main>
+      <Footer />
     </div>
   );
 }
