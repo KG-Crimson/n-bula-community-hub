@@ -140,7 +140,10 @@ function TournamentLogo({ champ }: { champ: Champion }) {
       <img
         src={champ.logoSrc}
         alt={`Logo Copa Nebula ${champ.volume}`}
+        width={160}
+        height={160}
         loading="lazy"
+        decoding="async"
         className="h-full w-full object-cover"
       />
     );
