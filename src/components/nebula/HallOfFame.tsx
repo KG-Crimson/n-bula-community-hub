@@ -135,23 +135,29 @@ function ChampionCard({ champ }: { champ: Champion }) {
       </header>
 
       <div className="relative">
-        <div className="text-[10px] font-bold tracking-[0.3em] text-gold/80 mb-3">EQUIPO CAMPEÓN</div>
-        <div className="grid grid-cols-6 gap-1.5 sm:gap-2">
-          {champ.team.map((p) => (
-            <div
-              key={p.id}
-              title={p.name}
-              className="aspect-square rounded-lg border border-gold/25 bg-background/60 p-1 hover:border-gold hover:shadow-[0_0_16px_oklch(0.83_0.16_85/0.5)] transition-all"
-            >
-              <img
-                src={`${POKE}/${p.id}.png`}
-                alt={p.name}
-                loading="lazy"
-                className="h-full w-full object-contain drop-shadow-[0_2px_6px_oklch(0.65_0.24_305/0.6)]"
-              />
+        {champ.team.length > 0 ? (
+          <>
+            <div className="text-[10px] font-bold tracking-[0.3em] text-gold/80 mb-3">EQUIPO CAMPEÓN</div>
+            <div className="grid grid-cols-6 gap-1.5 sm:gap-2">
+              {champ.team.map((p) => (
+                <div
+                  key={p.id}
+                  title={p.name}
+                  className="aspect-square rounded-lg border border-gold/25 bg-background/60 p-1 hover:border-gold hover:shadow-[0_0_16px_oklch(0.83_0.16_85/0.5)] transition-all"
+                >
+                  <img
+                    src={`${POKE}/${p.id}.png`}
+                    alt={p.name}
+                    loading="lazy"
+                    className="h-full w-full object-contain drop-shadow-[0_2px_6px_oklch(0.65_0.24_305/0.6)]"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        ) : (
+          <div className="h-[72px] sm:h-[84px]" aria-hidden />
+        )}
       </div>
     </article>
   );
