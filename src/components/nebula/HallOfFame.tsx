@@ -1,26 +1,32 @@
+import { useState } from "react";
 import solgaleo from "@/assets/const-solgaleo.png";
 import lunala from "@/assets/const-lunala.png";
 import tezcatWinner from "@/assets/tezcat-winner.png.asset.json";
-import { Crown } from "lucide-react";
+import copaV2 from "@/assets/copa-nebula-v2.jpeg.asset.json";
+import { Crown, ChevronDown, Users, Gamepad2, Trophy, Sparkles } from "lucide-react";
 
 const POKE = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork";
 
 type Champion = {
+  volume: string;
   handle: string;
   avatarSeed: string;
   avatarSrc?: string;
-  tournament: string;
-  date: string;
+  logoSrc?: string;
+  game: string;
+  players: string;
+  status?: "completed" | "ongoing";
   team: { id: number; name: string }[];
 };
 
 const CHAMPS: Champion[] = [
   {
+    volume: "V1",
     handle: "@Tezcat",
     avatarSeed: "tezcat",
     avatarSrc: tezcatWinner.url,
-    tournament: "Copa Nebula V1 · Pokémon Negro",
-    date: "16 personas",
+    game: "Pokémon Negro",
+    players: "16 personas",
     team: [
       { id: 409, name: "Rampardos" },
       { id: 135, name: "Jolteon" },
@@ -31,19 +37,22 @@ const CHAMPS: Champion[] = [
     ],
   },
   {
+    volume: "V2",
     handle: "@Tezcat",
     avatarSeed: "tezcat2",
     avatarSrc: tezcatWinner.url,
-    tournament: "Copa Nebula V2 · Pokémon Platino",
-    date: "40 personas",
+    logoSrc: copaV2.url,
+    game: "Pokémon Platino",
+    players: "40 personas",
     team: [],
   },
   {
+    volume: "V3",
     handle: "@Tezcat",
     avatarSeed: "tezcat3",
     avatarSrc: tezcatWinner.url,
-    tournament: "Copa Nebula V3 · Pokémon Ultra Sol",
-    date: "60 personas",
+    game: "Pokémon Ultra Sol",
+    players: "60 personas",
     team: [
       { id: 778, name: "Mimikyu" },
       { id: 289, name: "Slaking" },
@@ -54,17 +63,20 @@ const CHAMPS: Champion[] = [
     ],
   },
   {
-    handle: "@No fue Tezcat",
+    volume: "V4",
+    handle: "No fue Tezcat",
     avatarSeed: "otro",
-    tournament: "Copa Nebula V4 · Pokémon X",
-    date: "80 personas",
+    game: "Pokémon X",
+    players: "80 personas",
     team: [],
   },
   {
+    volume: "V5",
     handle: "En curso",
     avatarSeed: "current",
-    tournament: "Copa Nebula V5 · Pokémon HeartGold",
-    date: "80 personas",
+    game: "Pokémon HeartGold",
+    players: "80 personas",
+    status: "ongoing",
     team: [],
   },
 ];
@@ -72,7 +84,6 @@ const CHAMPS: Champion[] = [
 export function HallOfFame() {
   return (
     <section id="salon" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Constellation decorations - responsive scale/position so they never overlap content */}
       <img
         src={solgaleo}
         alt=""
@@ -102,13 +113,13 @@ export function HallOfFame() {
             SALÓN DE LA FAMA
           </h2>
           <p className="text-muted-foreground text-sm md:text-base px-4">
-            Conoce a nuestros campeones legendarios.
+            Toca una tarjeta para ver los detalles del torneo.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {CHAMPS.map((c) => (
-            <ChampionCard key={c.tournament} champ={c} />
+            <ChampionCard key={c.volume} champ={c} />
           ))}
         </div>
       </div>
@@ -116,60 +127,167 @@ export function HallOfFame() {
   );
 }
 
-function ChampionCard({ champ }: { champ: Champion }) {
+function TournamentLogo({ champ }: { champ: Champion }) {
+  if (champ.logoSrc) {
+    return (
+      <img
+        src={champ.logoSrc}
+        alt={`Logo Copa Nebula ${champ.volume}`}
+        loading="lazy"
+        className="h-full w-full object-cover"
+      />
+    );
+  }
+  // Stylized placeholder for tournaments without a logo yet
   return (
-    <article className="group card-nebula rounded-2xl p-4 sm:p-6 relative overflow-hidden transition-transform hover:-translate-y-1">
+    <div className="relative h-full w-full grid place-items-center bg-[radial-gradient(circle_at_30%_30%,oklch(0.55_0.22_305/0.9),oklch(0.15_0.05_290)_70%)]">
+      <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_70%_70%,oklch(0.83_0.16_85/0.4),transparent_60%)]" />
+      <Sparkles className="absolute top-2 left-2 h-3 w-3 text-gold/70" />
+      <Sparkles className="absolute bottom-3 right-3 h-2.5 w-2.5 text-pink/70" />
+      <div className="relative text-center">
+        <div className="text-[9px] font-bold tracking-[0.3em] text-gold/90">COPA</div>
+        <div className="font-display text-2xl sm:text-3xl text-gold-gradient leading-none">
+          {champ.volume}
+        </div>
+        <div className="text-[8px] tracking-[0.25em] text-white/70 mt-0.5">NEBULA</div>
+      </div>
+    </div>
+  );
+}
+
+function ChampionCard({ champ }: { champ: Champion }) {
+  const [open, setOpen] = useState(false);
+  const isOngoing = champ.status === "ongoing";
+
+  return (
+    <article
+      className={`group card-nebula rounded-2xl relative overflow-hidden transition-all duration-500 ${
+        open ? "ring-2 ring-gold/60 shadow-[0_0_40px_oklch(0.83_0.16_85/0.25)]" : "hover:-translate-y-1"
+      }`}
+    >
       <div className="absolute inset-0 rounded-2xl border border-gold/40 pointer-events-none" />
-      <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-primary/30 blur-3xl" />
+      <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-primary/30 blur-3xl pointer-events-none" />
 
-      <header className="relative grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 sm:gap-4 mb-5">
-        <div className="relative shrink-0">
-          <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-full btn-gold p-[2px]">
-            <div className="h-full w-full rounded-full bg-background grid place-items-center overflow-hidden">
-              <img
-                src={champ.avatarSrc || `https://api.dicebear.com/9.x/adventurer/svg?seed=${champ.avatarSeed}&backgroundColor=6b21a8,7c3aed,9333ea`}
-                alt=""
-                className="h-full w-full object-cover"
-                loading="lazy"
-              />
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className="relative w-full text-left p-4 sm:p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-2xl"
+      >
+        <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 sm:gap-4">
+          {/* Tournament logo */}
+          <div className="relative shrink-0">
+            <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-xl btn-gold p-[2px]">
+              <div className="h-full w-full rounded-[10px] overflow-hidden bg-background">
+                <TournamentLogo champ={champ} />
+              </div>
+            </div>
+            {isOngoing && (
+              <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-pink" />
+              </span>
+            )}
+          </div>
+
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-[10px] font-bold tracking-[0.3em] text-gold/80">COPA NEBULA</span>
+              <span className="text-[10px] font-black text-gold">{champ.volume}</span>
+            </div>
+            <div className="font-display text-lg sm:text-xl text-foreground truncate">
+              {champ.game}
+            </div>
+            <div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground">
+              <span className="flex items-center gap-1"><Users className="h-3 w-3" />{champ.players}</span>
+              {isOngoing ? (
+                <span className="text-pink font-bold tracking-wider">EN CURSO</span>
+              ) : (
+                <span className="flex items-center gap-1 text-gold truncate">
+                  <Trophy className="h-3 w-3" />
+                  <span className="truncate">{champ.handle}</span>
+                </span>
+              )}
             </div>
           </div>
-          <div className="absolute -bottom-1 -right-1 h-5 w-5 sm:h-6 sm:w-6 rounded-full bg-pink grid place-items-center shadow-[0_0_12px_oklch(0.72_0.24_350/0.8)]">
-            <Crown className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-background" />
-          </div>
-        </div>
-        <div className="min-w-0">
-          <div className="font-display text-lg sm:text-xl text-foreground truncate">{champ.handle}</div>
-          <div className="text-xs text-muted-foreground truncate">
-            {champ.tournament} <span className="text-gold">·</span> {champ.date}
-          </div>
-        </div>
-      </header>
 
-      <div className="relative">
-        {champ.team.length > 0 ? (
-          <>
-            <div className="text-[10px] font-bold tracking-[0.3em] text-gold/80 mb-3">EQUIPO CAMPEÓN</div>
-            <div className="grid grid-cols-6 gap-1.5 sm:gap-2">
-              {champ.team.map((p) => (
-                <div
-                  key={p.id}
-                  title={p.name}
-                  className="aspect-square rounded-lg border border-gold/25 bg-background/60 p-1 hover:border-gold hover:shadow-[0_0_16px_oklch(0.83_0.16_85/0.5)] transition-all"
-                >
-                  <img
-                    src={`${POKE}/${p.id}.png`}
-                    alt={p.name}
-                    loading="lazy"
-                    className="h-full w-full object-contain drop-shadow-[0_2px_6px_oklch(0.65_0.24_305/0.6)]"
-                  />
+          <ChevronDown
+            className={`h-5 w-5 text-gold shrink-0 transition-transform duration-500 ${open ? "rotate-180" : ""}`}
+          />
+        </div>
+      </button>
+
+      {/* Expandable body */}
+      <div
+        className={`grid transition-[grid-template-rows] duration-500 ease-out ${
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="px-4 sm:px-6 pb-5 sm:pb-6 pt-1 relative">
+            <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/50 to-transparent mb-4" />
+
+            {/* Winner + game info */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
+              <div className="rounded-xl border border-gold/25 bg-background/50 p-3">
+                <div className="flex items-center gap-2 text-[10px] font-bold tracking-[0.3em] text-gold/80 mb-2">
+                  <Trophy className="h-3 w-3" /> GANADOR
                 </div>
-              ))}
+                <div className="flex items-center gap-2">
+                  <div className="h-9 w-9 rounded-full overflow-hidden bg-background border border-gold/40 shrink-0">
+                    <img
+                      src={champ.avatarSrc || `https://api.dicebear.com/9.x/adventurer/svg?seed=${champ.avatarSeed}&backgroundColor=6b21a8,7c3aed,9333ea`}
+                      alt=""
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="font-display text-base text-foreground truncate">{champ.handle}</div>
+                </div>
+              </div>
+              <div className="rounded-xl border border-gold/25 bg-background/50 p-3">
+                <div className="flex items-center gap-2 text-[10px] font-bold tracking-[0.3em] text-gold/80 mb-2">
+                  <Gamepad2 className="h-3 w-3" /> JUEGO
+                </div>
+                <div className="font-display text-base text-foreground truncate">{champ.game}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{champ.players}</div>
+              </div>
             </div>
-          </>
-        ) : (
-          <div className="h-[72px] sm:h-[84px]" aria-hidden />
-        )}
+
+            {/* Champion team */}
+            {champ.team.length > 0 ? (
+              <>
+                <div className="text-[10px] font-bold tracking-[0.3em] text-gold/80 mb-3">EQUIPO CAMPEÓN</div>
+                <div className="grid grid-cols-6 gap-1.5 sm:gap-2">
+                  {champ.team.map((p) => (
+                    <div key={p.id} className="group/poke flex flex-col items-center">
+                      <div
+                        title={p.name}
+                        className="aspect-square w-full rounded-lg border border-gold/25 bg-background/60 p-1 hover:border-gold hover:shadow-[0_0_16px_oklch(0.83_0.16_85/0.5)] transition-all"
+                      >
+                        <img
+                          src={`${POKE}/${p.id}.png`}
+                          alt={p.name}
+                          loading="lazy"
+                          className="h-full w-full object-contain drop-shadow-[0_2px_6px_oklch(0.65_0.24_305/0.6)]"
+                        />
+                      </div>
+                      <div className="mt-1 text-[9px] text-muted-foreground truncate w-full text-center">
+                        {p.name}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="text-xs text-muted-foreground italic text-center py-3">
+                {isOngoing
+                  ? "El torneo aún está en curso. ¡Pronto conoceremos al equipo campeón!"
+                  : "Equipo campeón no registrado."}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </article>
   );
