@@ -273,9 +273,10 @@ function ChampionCard({ champ }: { champ: Champion }) {
                         className="aspect-square w-full rounded-lg border border-gold/25 bg-background/60 p-1 hover:border-gold hover:shadow-[0_0_16px_oklch(0.83_0.16_85/0.5)] transition-all"
                       >
                         <img
-                          src={`${POKE}/${p.id}.png`}
+                          src={`${PMD_PORTRAIT}/${String(p.id).padStart(4, "0")}/Normal.png`}
                           alt={p.name}
                           loading="lazy"
+                          style={{ imageRendering: "pixelated" }}
                           className="h-full w-full object-contain drop-shadow-[0_2px_6px_oklch(0.65_0.24_305/0.6)]"
                         />
                       </div>
