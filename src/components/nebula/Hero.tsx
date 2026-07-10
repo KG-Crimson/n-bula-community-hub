@@ -17,6 +17,9 @@ export function Hero() {
             alt="Nébula"
             width={1152}
             height={576}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="mx-auto w-full max-w-3xl drop-shadow-[0_0_60px_oklch(0.65_0.24_305/0.55)]"
           />
         </div>

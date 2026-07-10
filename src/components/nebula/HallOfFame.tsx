@@ -140,7 +140,10 @@ function TournamentLogo({ champ }: { champ: Champion }) {
       <img
         src={champ.logoSrc}
         alt={`Logo Copa Nebula ${champ.volume}`}
+        width={160}
+        height={160}
         loading="lazy"
+        decoding="async"
         className="h-full w-full object-cover"
       />
     );
@@ -245,7 +248,10 @@ function ChampionCard({ champ }: { champ: Champion }) {
                     <img
                       src={champ.avatarSrc || `https://api.dicebear.com/9.x/adventurer/svg?seed=${champ.avatarSeed}&backgroundColor=6b21a8,7c3aed,9333ea`}
                       alt=""
+                      width={36}
+                      height={36}
                       loading="lazy"
+                      decoding="async"
                       className="h-full w-full object-cover"
                     />
                   </div>
@@ -276,6 +282,7 @@ function ChampionCard({ champ }: { champ: Champion }) {
                           src={`${PMD_PORTRAIT}/${String(p.id).padStart(4, "0")}/Normal.png`}
                           alt={p.name}
                           loading="lazy"
+                          decoding="async"
                           width={40}
                           height={40}
                           style={{ imageRendering: "pixelated" }}
