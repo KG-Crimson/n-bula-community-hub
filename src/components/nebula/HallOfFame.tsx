@@ -1,5 +1,6 @@
 import solgaleo from "@/assets/const-solgaleo.png";
 import lunala from "@/assets/const-lunala.png";
+import tezcatWinner from "@/assets/tezcat-winner.png.asset.json";
 import { Crown } from "lucide-react";
 
 const POKE = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork";
