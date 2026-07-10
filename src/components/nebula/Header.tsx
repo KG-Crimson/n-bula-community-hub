@@ -5,6 +5,7 @@ import { Link } from "@tanstack/react-router";
 const NAV = [
   { label: "INICIO", to: "/" as const },
   { label: "TORNEOS", to: "/torneos" as const },
+  { label: "CALENDARIO", to: "/calendario" as const },
   { label: "ANUNCIOS", to: "/anuncios" as const },
   { label: "MULTIMEDIA", to: "/multimedia" as const },
   { label: "SALÓN DE LA FAMA", to: "/salon" as const },

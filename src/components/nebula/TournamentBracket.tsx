@@ -108,7 +108,7 @@ export function TournamentBracket() {
             <table className="w-full border-collapse">
               <thead>
                 <tr className="border-b-2 border-gold/30 text-gold/90 text-xs font-bold tracking-widest uppercase">
-                  <th className="py-3 px-4 text-left">Grupo</th>
+                  <th className="py-3 px-4 text-left">{grupoSeleccionado === "Global" ? "Grupo" : "Pos"}</th>
                   <th className="py-3 px-4 text-left">Entrenador</th>
                   <th className="py-3 px-4 text-center">V</th>
                   <th className="py-3 px-4 text-center">D</th>
@@ -122,7 +122,9 @@ export function TournamentBracket() {
                     key={index} 
                     className="hover:bg-gold/5 transition-colors duration-150 text-foreground/80"
                   >
-                    <td className="py-3.5 px-4 font-medium text-gold/70">{entrenador.grupo}</td>
+                    <td className="py-3.5 px-4 font-medium text-gold/70">
+                      {grupoSeleccionado === "Global" ? entrenador.grupo : `#${index + 1}`}
+                    </td>
                     <td className="py-3.5 px-4 font-bold text-white">{entrenador.nombre}</td>
                     <td className="py-3.5 px-4 text-center font-semibold text-emerald-400">{entrenador.victorias}</td>
                     <td className="py-3.5 px-4 text-center font-semibold text-rose-500">{entrenador.derrotas}</td>
@@ -135,7 +137,9 @@ export function TournamentBracket() {
               </tbody>
             </table>
           </div>
-
+          <div className="text-right mt-4 text-[11px] text-muted-foreground/60 italic">
+        Automatización de Excel: @pillz4ndueza 
+      </div>
         </div>
       </div>
     </section>
