@@ -1,5 +1,6 @@
 import solgaleo from "@/assets/const-solgaleo.png";
 import lunala from "@/assets/const-lunala.png";
+import tezcatWinner from "@/assets/tezcat-winner.png.asset.json";
 import { Crown } from "lucide-react";
 
 const POKE = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork";
@@ -7,6 +8,7 @@ const POKE = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/p
 type Champion = {
   handle: string;
   avatarSeed: string;
+  avatarSrc?: string;
   tournament: string;
   date: string;
   team: { id: number; name: string }[];
@@ -16,6 +18,7 @@ const CHAMPS: Champion[] = [
   {
     handle: "@Tezcat",
     avatarSeed: "tezcat",
+    avatarSrc: tezcatWinner.url,
     tournament: "Copa Nebula V1 · Pokémon Negro",
     date: "16 personas",
     team: [
@@ -30,6 +33,7 @@ const CHAMPS: Champion[] = [
   {
     handle: "@Tezcat",
     avatarSeed: "tezcat2",
+    avatarSrc: tezcatWinner.url,
     tournament: "Copa Nebula V2 · Pokémon Platino",
     date: "40 personas",
     team: [],
@@ -37,6 +41,7 @@ const CHAMPS: Champion[] = [
   {
     handle: "@Tezcat",
     avatarSeed: "tezcat3",
+    avatarSrc: tezcatWinner.url,
     tournament: "Copa Nebula V3 · Pokémon Ultra Sol",
     date: "60 personas",
     team: [
@@ -122,9 +127,9 @@ function ChampionCard({ champ }: { champ: Champion }) {
           <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-full btn-gold p-[2px]">
             <div className="h-full w-full rounded-full bg-background grid place-items-center overflow-hidden">
               <img
-                src={`https://api.dicebear.com/9.x/adventurer/svg?seed=${champ.avatarSeed}&backgroundColor=6b21a8,7c3aed,9333ea`}
+                src={champ.avatarSrc || `https://api.dicebear.com/9.x/adventurer/svg?seed=${champ.avatarSeed}&backgroundColor=6b21a8,7c3aed,9333ea`}
                 alt=""
-                className="h-full w-full"
+                className="h-full w-full object-cover"
                 loading="lazy"
               />
             </div>
