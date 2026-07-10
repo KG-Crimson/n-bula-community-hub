@@ -273,22 +273,23 @@ function ChampionCard({ champ }: { champ: Champion }) {
                 <div className="text-[10px] font-bold tracking-[0.3em] text-gold/80 mb-3">EQUIPO CAMPEÓN</div>
                 <div className="grid grid-cols-6 gap-1.5 sm:gap-2 place-items-center">
                   {champ.team.map((p) => (
-                    <div key={p.id} className="group/poke flex flex-col items-center">
-                      <div
-                        title={p.name}
-                        className="inline-flex items-center justify-center rounded-md border border-gold/30 bg-background/60 p-0.5 hover:border-gold hover:shadow-[0_0_16px_oklch(0.83_0.16_85/0.5)] transition-all"
-                      >
-                        <img
-                          src={`${PMD_PORTRAIT}/${String(p.id).padStart(4, "0")}/Normal.png`}
-                          alt={p.name}
-                          loading="lazy"
-                          decoding="async"
-                          width={40}
-                          height={40}
-                          style={{ imageRendering: "pixelated" }}
-                          className="block h-10 w-10 sm:h-12 sm:w-12 object-contain drop-shadow-[0_2px_6px_oklch(0.65_0.24_305/0.6)]"
-                        />
-                      </div>
+                  <div key={p.id} className="group/poke flex flex-col items-center">
+                    <div
+                      title={p.name}
+                      className="relative inline-flex items-center justify-center rounded-md bg-background/60 p-0.5 hover:shadow-[0_0_16px_oklch(0.83_0.16_85/0.5)] transition-all"
+                    >
+                      <img
+                        src={`${PMD_PORTRAIT}/${String(p.id).padStart(4, "0")}/Normal.png`}
+                        alt={p.name}
+                        loading="lazy"
+                        decoding="async"
+                        width={40}
+                        height={40}
+                        style={{ imageRendering: "pixelated" }}
+                        className="block h-10 w-10 sm:h-12 sm:w-12 object-contain drop-shadow-[0_2px_6px_oklch(0.65_0.24_305/0.6)]"
+                      />
+                      <div className="absolute inset-0 rounded-md border border-gold/30 group-hover/poke:border-gold pointer-events-none z-10" />
+                    </div>
                       <div className="mt-1 text-[9px] text-muted-foreground truncate max-w-[64px] text-center">
                         {p.name}
                       </div>
