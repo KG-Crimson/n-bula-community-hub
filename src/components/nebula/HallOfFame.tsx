@@ -64,11 +64,18 @@ const CHAMPS: Champion[] = [
   },
   {
     volume: "V4",
-    handle: "No fue Tezcat",
-    avatarSeed: "otro",
+    handle: "Roll",
+    avatarSeed: "roll",
     game: "Pokémon X",
     players: "80 personas",
-    team: [],
+    team: [
+      { id: 169, name: "Crobat" },
+      { id: 465, name: "Tangrowth" },
+      { id: 282, name: "Mega Gardevoir" },
+      { id: 242, name: "Blissey" },
+      { id: 34, name: "Nidoking" },
+      { id: 445, name: "Garchomp" },
+    ],
   },
   {
     volume: "V5",
