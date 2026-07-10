@@ -4,6 +4,7 @@ import lunala from "@/assets/const-lunala.png";
 import tezcatWinner from "@/assets/tezcat-winner.png.asset.json";
 import copaV1 from "@/assets/copa-nebula-v1.png.asset.json";
 import copaV2 from "@/assets/copa-nebula-v2.jpeg.asset.json";
+import copaV5 from "@/assets/copa-nebula-v5.png.asset.json";
 import { Crown, ChevronDown, Users, Gamepad2, Trophy, Sparkles } from "lucide-react";
 
 const PMD_PORTRAIT = "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait";
@@ -83,6 +84,7 @@ const CHAMPS: Champion[] = [
     volume: "V5",
     handle: "En curso",
     avatarSeed: "current",
+    logoSrc: copaV5.url,
     game: "Pokémon HeartGold",
     players: "80 personas",
     status: "ongoing",
