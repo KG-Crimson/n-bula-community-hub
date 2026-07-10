@@ -276,7 +276,7 @@ function ChampionCard({ champ }: { champ: Champion }) {
                   <div key={p.id} className="group/poke flex flex-col items-center">
                     <div
                       title={p.name}
-                      className="relative inline-flex items-center justify-center rounded-md bg-background/60 p-0.5 overflow-hidden hover:shadow-[0_0_16px_oklch(0.83_0.16_85/0.5)] transition-all"
+                      className="relative inline-flex items-center justify-center rounded-md bg-background/60 overflow-hidden hover:shadow-[0_0_16px_oklch(0.83_0.16_85/0.5)] transition-all"
                     >
                       <img
                         src={`${PMD_PORTRAIT}/${String(p.id).padStart(4, "0")}/Normal.png`}
@@ -288,7 +288,7 @@ function ChampionCard({ champ }: { champ: Champion }) {
                         style={{ imageRendering: "pixelated" }}
                         className="block h-10 w-10 sm:h-12 sm:w-12 object-contain"
                       />
-                      <div className="absolute inset-0 rounded-md border border-gold/30 group-hover/poke:border-gold pointer-events-none z-10" />
+                      <div className="absolute inset-0 rounded-[inherit] border border-gold/30 group-hover/poke:border-gold pointer-events-none z-10" />
                     </div>
                       <div className="mt-1 text-[9px] text-muted-foreground truncate max-w-[64px] text-center">
                         {p.name}
