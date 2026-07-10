@@ -5,7 +5,7 @@ import tezcatWinner from "@/assets/tezcat-winner.png.asset.json";
 import copaV2 from "@/assets/copa-nebula-v2.jpeg.asset.json";
 import { Crown, ChevronDown, Users, Gamepad2, Trophy, Sparkles } from "lucide-react";
 
-const POKE = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork";
+const PMD_PORTRAIT = "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait";
 
 type Champion = {
   volume: string;
