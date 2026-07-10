@@ -50,7 +50,14 @@ const CHAMPS: Champion[] = [
     logoSrc: assetUrl(copaV2.url),
     game: "Pokémon Platino",
     players: "40 personas",
-    team: [],
+    team: [
+      { id: 454, name: "Toxicroak" },
+      { id: 94, name: "Gengar" },
+      { id: 474, name: "Porygon-Z" },
+      { id: 475, name: "Gallade" },
+      { id: 450, name: "Hippowdon" },
+      { id: 289, name: "Slaking" },
+    ],
   },
   {
     volume: "V3",
