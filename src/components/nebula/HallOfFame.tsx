@@ -18,6 +18,7 @@ const CHAMPS: Champion[] = [
   {
     handle: "@Tezcat",
     avatarSeed: "tezcat",
+    avatarSrc: tezcatWinner.url,
     tournament: "Copa Nebula V1 · Pokémon Negro",
     date: "16 personas",
     team: [
@@ -32,6 +33,7 @@ const CHAMPS: Champion[] = [
   {
     handle: "@Tezcat",
     avatarSeed: "tezcat2",
+    avatarSrc: tezcatWinner.url,
     tournament: "Copa Nebula V2 · Pokémon Platino",
     date: "40 personas",
     team: [],
@@ -39,6 +41,7 @@ const CHAMPS: Champion[] = [
   {
     handle: "@Tezcat",
     avatarSeed: "tezcat3",
+    avatarSrc: tezcatWinner.url,
     tournament: "Copa Nebula V3 · Pokémon Ultra Sol",
     date: "60 personas",
     team: [
