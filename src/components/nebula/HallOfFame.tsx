@@ -152,7 +152,7 @@ function TournamentLogo({ champ }: { champ: Champion }) {
         height={160}
         loading="lazy"
         decoding="async"
-        className="h-full w-full object-contain"
+        className="h-full w-full object-cover object-center"
       />
     );
   }
