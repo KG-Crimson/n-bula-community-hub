@@ -248,7 +248,10 @@ function ChampionCard({ champ }: { champ: Champion }) {
                     <img
                       src={champ.avatarSrc || `https://api.dicebear.com/9.x/adventurer/svg?seed=${champ.avatarSeed}&backgroundColor=6b21a8,7c3aed,9333ea`}
                       alt=""
+                      width={36}
+                      height={36}
                       loading="lazy"
+                      decoding="async"
                       className="h-full w-full object-cover"
                     />
                   </div>
