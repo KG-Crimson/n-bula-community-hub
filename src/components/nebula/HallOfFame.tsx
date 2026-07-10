@@ -282,6 +282,7 @@ function ChampionCard({ champ }: { champ: Champion }) {
                           src={`${PMD_PORTRAIT}/${String(p.id).padStart(4, "0")}/Normal.png`}
                           alt={p.name}
                           loading="lazy"
+                          decoding="async"
                           width={40}
                           height={40}
                           style={{ imageRendering: "pixelated" }}
