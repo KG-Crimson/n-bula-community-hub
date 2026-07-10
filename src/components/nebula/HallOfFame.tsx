@@ -7,6 +7,7 @@ import copaV2 from "@/assets/copa-nebula-v2.jpeg.asset.json";
 import copaV3 from "@/assets/copa-nebula-v3.png.asset.json";
 import copaV4 from "@/assets/copa-nebula-v4.png.asset.json";
 import copaV5 from "@/assets/copa-nebula-v5.png.asset.json";
+import { assetUrl } from "@/lib/asset-url";
 import { Crown, ChevronDown, Users, Gamepad2, Trophy, Sparkles } from "lucide-react";
 
 const PMD_PORTRAIT = "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait";
@@ -28,8 +29,8 @@ const CHAMPS: Champion[] = [
     volume: "V1",
     handle: "@Tezcat",
     avatarSeed: "tezcat",
-    avatarSrc: tezcatWinner.url,
-    logoSrc: copaV1.url,
+    avatarSrc: assetUrl(tezcatWinner.url),
+    logoSrc: assetUrl(copaV1.url),
     game: "Pokémon Negro",
     players: "16 personas",
     team: [
@@ -45,8 +46,8 @@ const CHAMPS: Champion[] = [
     volume: "V2",
     handle: "@Tezcat",
     avatarSeed: "tezcat2",
-    avatarSrc: tezcatWinner.url,
-    logoSrc: copaV2.url,
+    avatarSrc: assetUrl(tezcatWinner.url),
+    logoSrc: assetUrl(copaV2.url),
     game: "Pokémon Platino",
     players: "40 personas",
     team: [],
@@ -55,8 +56,8 @@ const CHAMPS: Champion[] = [
     volume: "V3",
     handle: "@Tezcat",
     avatarSeed: "tezcat3",
-    avatarSrc: tezcatWinner.url,
-    logoSrc: copaV3.url,
+    avatarSrc: assetUrl(tezcatWinner.url),
+    logoSrc: assetUrl(copaV3.url),
     game: "Pokémon Ultra Sol",
     players: "60 personas",
     team: [
@@ -72,7 +73,7 @@ const CHAMPS: Champion[] = [
     volume: "V4",
     handle: "Roll",
     avatarSeed: "roll",
-    logoSrc: copaV4.url,
+    logoSrc: assetUrl(copaV4.url),
     game: "Pokémon X",
     players: "80 personas",
     team: [
@@ -88,7 +89,7 @@ const CHAMPS: Champion[] = [
     volume: "V5",
     handle: "En curso",
     avatarSeed: "current",
-    logoSrc: copaV5.url,
+    logoSrc: assetUrl(copaV5.url),
     game: "Pokémon HeartGold",
     players: "80 personas",
     status: "ongoing",
