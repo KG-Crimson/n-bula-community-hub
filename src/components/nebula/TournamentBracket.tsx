@@ -13,6 +13,7 @@ export function TournamentBracket() {
   const [todosLosJugadores, setTodosLosJugadores] = useState<Jugador[]>([]);
   const [jugadoresFiltrados, setJugadoresFiltrados] = useState<Jugador[]>([]);
   const [grupoSeleccionado, setGrupoSeleccionado] = useState<string>("Global");
+  const [jugadoresVivos, setJugadoresVivos] = useState<number>(75);
 
   useEffect(() => {
     const urlSheets = "https://docs.google.com/spreadsheets/d/19CwPqm2npxVcPpB9D1zC-BYlw-mBcbbSnlSflQYtjNc/export?format=csv&gid=1224590720";
@@ -22,6 +23,14 @@ export function TournamentBracket() {
       .then((text) => {
         const lineas = text.split("\n");
         
+        if (lineas[11]) {
+          const columnasFila12 = lineas[11].split(",");
+          const valorN12 = parseInt(columnasFila12[13]?.trim());
+          if (!isNaN(valorN12)) {
+            setJugadoresVivos(valorN12);
+          }
+        }
+
         const datosLimpios: Jugador[] = lineas
           .slice(1)
           .map((linea) => {
@@ -35,7 +44,7 @@ export function TournamentBracket() {
               diferenciaMuertes: parseInt(columnas[5]?.trim()) || 0,
             };
           })
-          .filter((p) => p.nombre !== "" && p.grupo !== "");
+          .filter((p) => p.nombre !== "" && p.grupo !== "" && !p.grupo.startsWith("CONTEO") && p.puntos !== undefined);
 
         const datosOrdenados = datosLimpios.sort((a, b) => {
           if (b.puntos !== a.puntos) {
@@ -73,7 +82,7 @@ export function TournamentBracket() {
             TORNEO NÉBULA V5
           </h2>
           <p className="text-muted-foreground text-sm md:text-base px-4">
-            Fase de Grupos <span className="text-gold">·</span> <span className="text-gold">75</span> Jugadores Restantes de <span className="text-gold">80</span>
+            Fase de Grupos <span className="text-gold">·</span> <span className="text-gold">{jugadoresVivos}</span> Jugadores Restantes de <span className="text-gold">80</span>
           </p>
         </div>
 
@@ -103,6 +112,7 @@ export function TournamentBracket() {
                   <th className="py-3 px-4 text-left">Entrenador</th>
                   <th className="py-3 px-4 text-center">V</th>
                   <th className="py-3 px-4 text-center">D</th>
+                  <th className="py-3 px-4 text-center">DIFF</th>
                   <th className="py-3 px-4 text-center">PTS</th>
                 </tr>
               </thead>
@@ -116,6 +126,9 @@ export function TournamentBracket() {
                     <td className="py-3.5 px-4 font-bold text-white">{entrenador.nombre}</td>
                     <td className="py-3.5 px-4 text-center font-semibold text-emerald-400">{entrenador.victorias}</td>
                     <td className="py-3.5 px-4 text-center font-semibold text-rose-500">{entrenador.derrotas}</td>
+                    <td className={`py-3.5 px-4 text-center font-semibold ${entrenador.diferenciaMuertes > 0 ? "text-emerald-400" : entrenador.diferenciaMuertes < 0 ? "text-rose-500" : "text-foreground/40"}`}>
+                      {entrenador.diferenciaMuertes > 0 ? `+${entrenador.diferenciaMuertes}` : entrenador.diferenciaMuertes}
+                    </td>
                     <td className="py-3.5 px-4 text-center font-bold text-gold">{entrenador.puntos}</td>
                   </tr>
                 ))}
