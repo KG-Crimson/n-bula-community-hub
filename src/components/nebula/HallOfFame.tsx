@@ -96,7 +96,7 @@ export function HallOfFame() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {CHAMPS.map((c) => (
-            <ChampionCard key={c.handle} champ={c} />
+            <ChampionCard key={c.tournament} champ={c} />
           ))}
         </div>
       </div>
