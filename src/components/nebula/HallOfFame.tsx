@@ -8,6 +8,7 @@ const POKE = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/p
 type Champion = {
   handle: string;
   avatarSeed: string;
+  avatarSrc?: string;
   tournament: string;
   date: string;
   team: { id: number; name: string }[];
