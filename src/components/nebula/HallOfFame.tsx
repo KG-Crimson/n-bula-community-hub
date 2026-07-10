@@ -18,7 +18,14 @@ const CHAMPS: Champion[] = [
     avatarSeed: "tezcat",
     tournament: "Copa Nebula V1 · Pokémon Negro",
     date: "16 personas",
-    team: [],
+    team: [
+      { id: 409, name: "Rampardos" },
+      { id: 135, name: "Jolteon" },
+      { id: 9, name: "Blastoise" },
+      { id: 169, name: "Crobat" },
+      { id: 230, name: "Kingdra" },
+      { id: 625, name: "Bisharp" },
+    ],
   },
   {
     handle: "@Tezcat",
