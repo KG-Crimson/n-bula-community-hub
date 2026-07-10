@@ -127,9 +127,9 @@ function ChampionCard({ champ }: { champ: Champion }) {
           <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-full btn-gold p-[2px]">
             <div className="h-full w-full rounded-full bg-background grid place-items-center overflow-hidden">
               <img
-                src={`https://api.dicebear.com/9.x/adventurer/svg?seed=${champ.avatarSeed}&backgroundColor=6b21a8,7c3aed,9333ea`}
+                src={champ.avatarSrc || `https://api.dicebear.com/9.x/adventurer/svg?seed=${champ.avatarSeed}&backgroundColor=6b21a8,7c3aed,9333ea`}
                 alt=""
-                className="h-full w-full"
+                className="h-full w-full object-cover"
                 loading="lazy"
               />
             </div>
