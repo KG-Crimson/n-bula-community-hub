@@ -2,6 +2,7 @@ import { useState } from "react";
 import solgaleo from "@/assets/const-solgaleo.png";
 import lunala from "@/assets/const-lunala.png";
 import tezcatWinner from "@/assets/tezcat-winner.png.asset.json";
+import copaV1 from "@/assets/copa-nebula-v1.png.asset.json";
 import copaV2 from "@/assets/copa-nebula-v2.jpeg.asset.json";
 import { Crown, ChevronDown, Users, Gamepad2, Trophy, Sparkles } from "lucide-react";
 
@@ -25,6 +26,7 @@ const CHAMPS: Champion[] = [
     handle: "@Tezcat",
     avatarSeed: "tezcat",
     avatarSrc: tezcatWinner.url,
+    logoSrc: copaV1.url,
     game: "Pokémon Negro",
     players: "16 personas",
     team: [
