@@ -4,6 +4,7 @@ import lunala from "@/assets/const-lunala.png";
 import tezcatWinner from "@/assets/tezcat-winner.png.asset.json";
 import copaV1 from "@/assets/copa-nebula-v1.png.asset.json";
 import copaV2 from "@/assets/copa-nebula-v2.jpeg.asset.json";
+import copaV3 from "@/assets/copa-nebula-v3.png.asset.json";
 import copaV4 from "@/assets/copa-nebula-v4.png.asset.json";
 import copaV5 from "@/assets/copa-nebula-v5.png.asset.json";
 import { Crown, ChevronDown, Users, Gamepad2, Trophy, Sparkles } from "lucide-react";
@@ -55,6 +56,7 @@ const CHAMPS: Champion[] = [
     handle: "@Tezcat",
     avatarSeed: "tezcat3",
     avatarSrc: tezcatWinner.url,
+    logoSrc: copaV3.url,
     game: "Pokémon Ultra Sol",
     players: "60 personas",
     team: [
