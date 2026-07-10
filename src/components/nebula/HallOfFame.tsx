@@ -7,6 +7,7 @@ import copaV2 from "@/assets/copa-nebula-v2.jpeg.asset.json";
 import copaV3 from "@/assets/copa-nebula-v3.png.asset.json";
 import copaV4 from "@/assets/copa-nebula-v4.png.asset.json";
 import copaV5 from "@/assets/copa-nebula-v5.png.asset.json";
+import { assetUrl } from "@/lib/asset-url";
 import { Crown, ChevronDown, Users, Gamepad2, Trophy, Sparkles } from "lucide-react";
 
 const PMD_PORTRAIT = "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait";
