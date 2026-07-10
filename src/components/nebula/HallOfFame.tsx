@@ -14,60 +14,46 @@ type Champion = {
 
 const CHAMPS: Champion[] = [
   {
-    handle: "@Ganador_Estrella",
-    avatarSeed: "star",
-    tournament: "Copa de Verano",
-    date: "Julio 2026",
+    handle: "@Tezcat",
+    avatarSeed: "tezcat",
+    tournament: "Copa Nebula V1 · Pokémon Negro",
+    date: "16 personas",
+    team: [],
+  },
+  {
+    handle: "@Tezcat",
+    avatarSeed: "tezcat2",
+    tournament: "Copa Nebula V2 · Pokémon Platino",
+    date: "40 personas",
+    team: [],
+  },
+  {
+    handle: "@Tezcat",
+    avatarSeed: "tezcat3",
+    tournament: "Copa Nebula V3 · Pokémon Ultra Sol",
+    date: "60 personas",
     team: [
-      { id: 727, name: "Incineroar" },
-      { id: 25, name: "Pikachu" },
-      { id: 785, name: "Tapu Koko" },
-      { id: 801, name: "Magearna" },
-      { id: 798, name: "Kartana" },
-      { id: 373, name: "Salamence" },
+      { id: 778, name: "Mimikyu" },
+      { id: 289, name: "Slaking" },
+      { id: 567, name: "Archeops" },
+      { id: 282, name: "Mega Gardevoir" },
+      { id: 639, name: "Terrakion" },
+      { id: 260, name: "Swampert" },
     ],
   },
   {
-    handle: "@Luna_Void",
-    avatarSeed: "moon",
-    tournament: "Torneo Lunar",
-    date: "Mayo 2026",
-    team: [
-      { id: 792, name: "Lunala" },
-      { id: 197, name: "Umbreon" },
-      { id: 359, name: "Absol" },
-      { id: 302, name: "Sableye" },
-      { id: 442, name: "Spiritomb" },
-      { id: 491, name: "Darkrai" },
-    ],
+    handle: "@No fue Tezcat",
+    avatarSeed: "otro",
+    tournament: "Copa Nebula V4 · Pokémon X",
+    date: "80 personas",
+    team: [],
   },
   {
-    handle: "@Solar_King",
-    avatarSeed: "sun",
-    tournament: "Copa Solar",
-    date: "Marzo 2026",
-    team: [
-      { id: 791, name: "Solgaleo" },
-      { id: 6, name: "Charizard" },
-      { id: 250, name: "Ho-Oh" },
-      { id: 637, name: "Volcarona" },
-      { id: 776, name: "Turtonator" },
-      { id: 383, name: "Groudon" },
-    ],
-  },
-  {
-    handle: "@Nebula_Prime",
-    avatarSeed: "prime",
-    tournament: "Gran Prix Nébula",
-    date: "Enero 2026",
-    team: [
-      { id: 384, name: "Rayquaza" },
-      { id: 386, name: "Deoxys" },
-      { id: 483, name: "Dialga" },
-      { id: 484, name: "Palkia" },
-      { id: 487, name: "Giratina" },
-      { id: 150, name: "Mewtwo" },
-    ],
+    handle: "En curso",
+    avatarSeed: "current",
+    tournament: "Copa Nebula V5 · Pokémon HeartGold",
+    date: "80 personas",
+    team: [],
   },
 ];
 
@@ -110,7 +96,7 @@ export function HallOfFame() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {CHAMPS.map((c) => (
-            <ChampionCard key={c.handle} champ={c} />
+            <ChampionCard key={c.tournament} champ={c} />
           ))}
         </div>
       </div>
@@ -149,23 +135,29 @@ function ChampionCard({ champ }: { champ: Champion }) {
       </header>
 
       <div className="relative">
-        <div className="text-[10px] font-bold tracking-[0.3em] text-gold/80 mb-3">EQUIPO CAMPEÓN</div>
-        <div className="grid grid-cols-6 gap-1.5 sm:gap-2">
-          {champ.team.map((p) => (
-            <div
-              key={p.id}
-              title={p.name}
-              className="aspect-square rounded-lg border border-gold/25 bg-background/60 p-1 hover:border-gold hover:shadow-[0_0_16px_oklch(0.83_0.16_85/0.5)] transition-all"
-            >
-              <img
-                src={`${POKE}/${p.id}.png`}
-                alt={p.name}
-                loading="lazy"
-                className="h-full w-full object-contain drop-shadow-[0_2px_6px_oklch(0.65_0.24_305/0.6)]"
-              />
+        {champ.team.length > 0 ? (
+          <>
+            <div className="text-[10px] font-bold tracking-[0.3em] text-gold/80 mb-3">EQUIPO CAMPEÓN</div>
+            <div className="grid grid-cols-6 gap-1.5 sm:gap-2">
+              {champ.team.map((p) => (
+                <div
+                  key={p.id}
+                  title={p.name}
+                  className="aspect-square rounded-lg border border-gold/25 bg-background/60 p-1 hover:border-gold hover:shadow-[0_0_16px_oklch(0.83_0.16_85/0.5)] transition-all"
+                >
+                  <img
+                    src={`${POKE}/${p.id}.png`}
+                    alt={p.name}
+                    loading="lazy"
+                    className="h-full w-full object-contain drop-shadow-[0_2px_6px_oklch(0.65_0.24_305/0.6)]"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        ) : (
+          <div className="h-[72px] sm:h-[84px]" aria-hidden />
+        )}
       </div>
     </article>
   );
