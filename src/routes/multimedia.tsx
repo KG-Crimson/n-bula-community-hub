@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Heart, Palette } from "lucide-react";
+import parceExpulsado from "@/assets/parce-expulsado.png.asset.json";
 import parceKiss from "@/assets/parce-kiss.png.asset.json";
 import parceObedezcan from "@/assets/parce-obedezcan.png.asset.json";
 import parceSoff from "@/assets/parce-soff.png.asset.json";
@@ -26,6 +27,7 @@ export const Route = createFileRoute("/multimedia")({
 });
 
 const ARTWORKS: Artwork[] = [
+  { title: "EXPULSADO.", artist: "@parce", likes: 512, image: parceExpulsado.url, tall: true },
   { title: "Amor Greninja", artist: "@parce", likes: 342, image: parceKiss.url, tall: true },
   { title: "¡Obedezcan!", artist: "@parce", likes: 289, image: parceObedezcan.url },
   { title: "La Funa a SOFF", artist: "@parce", likes: 415, image: parceSoff.url },
