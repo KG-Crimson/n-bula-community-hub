@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Heart, Palette } from "lucide-react";
+import { Heart, Palette, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import parceExpulsado from "@/assets/parce-expulsado.png.asset.json";
 import parceKiss from "@/assets/parce-kiss.png.asset.json";
 import parceObedezcan from "@/assets/parce-obedezcan.png.asset.json";
@@ -43,6 +44,17 @@ const ARTWORKS: Artwork[] = [
 ];
 
 function MultimediaPage() {
+  const [selected, setSelected] = useState<Artwork | null>(null);
+
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelected(null);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [selected]);
+
   return (
     <section className="pt-10 pb-24 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
@@ -59,7 +71,8 @@ function MultimediaPage() {
           {ARTWORKS.map((a) => (
             <figure
               key={a.title}
-              className={`group relative mb-3 sm:mb-4 overflow-hidden rounded-2xl border border-gold/20 bg-background shadow-[0_0_30px_oklch(0.65_0.24_305/0.15)] break-inside-avoid ${
+              onClick={() => setSelected(a)}
+              className={`group relative mb-3 sm:mb-4 overflow-hidden rounded-2xl border border-gold/20 bg-background shadow-[0_0_30px_oklch(0.65_0.24_305/0.15)] break-inside-avoid cursor-pointer ${
                 a.image ? "" : a.tall ? "aspect-[3/5]" : "aspect-square"
               }`}
             >
@@ -68,7 +81,7 @@ function MultimediaPage() {
                   src={a.image}
                   alt={a.title}
                   loading="lazy"
-                  className="w-full h-auto"
+                  className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
                 />
               ) : (
                 <>
@@ -104,6 +117,53 @@ function MultimediaPage() {
           </a>
         </div>
       </div>
+
+      {selected && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/90 backdrop-blur-sm"
+          onClick={() => setSelected(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="relative max-h-full w-full max-w-3xl overflow-auto rounded-3xl border border-gold/30 bg-background shadow-[0_0_60px_oklch(0.65_0.24_305/0.25)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelected(null)}
+              className="absolute top-3 right-3 z-10 rounded-full p-2 bg-background/80 text-gold hover:text-foreground transition-colors"
+              aria-label="Cerrar vista previa"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            {selected.image ? (
+              <img
+                src={selected.image}
+                alt={selected.title}
+                className="w-full h-auto"
+              />
+            ) : (
+              <div className={`relative w-full aspect-square bg-gradient-to-br ${selected.gradient}`}>
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,oklch(1_0_0/0.25),transparent_60%)]" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-30">
+                  <Palette className="h-24 w-24 text-white/80" />
+                </div>
+              </div>
+            )}
+
+            <div className="p-5 sm:p-6 border-t border-gold/20">
+              <h2 className="font-display text-xl sm:text-2xl text-foreground">{selected.title}</h2>
+              <div className="mt-2 flex items-center justify-between gap-4">
+                <span className="text-sm text-gold tracking-widest">{selected.artist}</span>
+                <span className="inline-flex items-center gap-1 text-sm text-pink">
+                  <Heart className="h-4 w-4 fill-current" /> {selected.likes}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
