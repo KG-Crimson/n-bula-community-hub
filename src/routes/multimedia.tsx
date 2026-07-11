@@ -25,16 +25,18 @@ export const Route = createFileRoute("/multimedia")({
   component: MultimediaPage,
 });
 
-// Placeholder gradients simulate art pieces until real uploads are wired.
-const ARTWORKS = [
+const ARTWORKS: Artwork[] = [
+  { title: "Amor Greninja", artist: "@parce", likes: 342, image: parceKiss.url, tall: true },
+  { title: "¡Obedezcan!", artist: "@parce", likes: 289, image: parceObedezcan.url },
+  { title: "La Funa a SOFF", artist: "@parce", likes: 415, image: parceSoff.url },
   { title: "Lunala nocturna", artist: "@stellaria", likes: 128, gradient: "from-indigo-500 via-purple-600 to-pink-500", tall: true },
   { title: "Solgaleo dorado", artist: "@auralite", likes: 96, gradient: "from-amber-400 via-orange-500 to-rose-500" },
   { title: "Necrozma prisma", artist: "@nyxbyte", likes: 210, gradient: "from-cyan-400 via-fuchsia-500 to-violet-600" },
-  { title: "Rayquaza celeste", artist: "@dracopix", likes: 74, gradient: "from-emerald-400 via-teal-500 to-sky-600", tall: true },
+  { title: "Rayquaza celeste", artist: "@dracopix", likes: 74, gradient: "from-emerald-400 via-teal-500 to-sky-600" },
   { title: "Gengar violeta", artist: "@umbrart", likes: 143, gradient: "from-violet-600 via-fuchsia-600 to-indigo-800" },
   { title: "Umbreon lunar", artist: "@nightowl", likes: 89, gradient: "from-slate-700 via-purple-800 to-yellow-500" },
   { title: "Charizard sombras", artist: "@ember", likes: 167, gradient: "from-red-500 via-orange-600 to-amber-500" },
-  { title: "Mew estelar", artist: "@stellaria", likes: 202, gradient: "from-pink-400 via-rose-400 to-purple-500", tall: true },
+  { title: "Mew estelar", artist: "@stellaria", likes: 202, gradient: "from-pink-400 via-rose-400 to-purple-500" },
   { title: "Zoroark ilusión", artist: "@auralite", likes: 118, gradient: "from-gray-800 via-red-700 to-pink-600" },
 ];
 
