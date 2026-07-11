@@ -309,7 +309,7 @@ function Index() {
           <div className="text-center mb-8">
             <div className="text-[10px] font-bold tracking-[0.4em] text-gold mb-3">EXPLORA</div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-purple-gradient">
-              LA CONSTELACIÓN NÉBLULA
+              LA CONSTELACIÓN NÉBULA
             </h2>
             <p className="text-muted-foreground text-sm mt-3">
               Sigue las estrellas de Cosmog para navegar la comunidad
