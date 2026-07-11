@@ -105,7 +105,7 @@ const CLOUD_PUFFS_DESKTOP = [
 
 // Mobile layout: taller viewBox so Cosmog stretches vertically and labels don't collide.
 const STARS_MOBILE: StarNode[] = [
-  { to: "/salon",      title: "SALÓN",   desc: "Campeones legendarios.",           icon: Award,       x: 400, y: 280, labelAnchor: "middle", labelDx: 0,   labelDy: -28 },
+  { to: "/salon",      title: "SALÓN",   desc: "Campeones legendarios.",           icon: Award,       x: 400, y: 240, labelAnchor: "middle", labelDx: 0,   labelDy: -28 },
   { to: "/multimedia", title: "MULTI",   desc: "Dibujos y arte.",                  icon: ImageIcon,   x: 640, y: 130, labelAnchor: "start",  labelDx: 18,  labelDy: 5 },
   { to: "/anuncios",   title: "ANUNCIOS",desc: "Novedades.",                       icon: Megaphone,   x: 160, y: 130, labelAnchor: "end",    labelDx: -18, labelDy: 5 },
   { to: "/torneos",    title: "TORNEOS", desc: "Bracket y eventos.",               icon: Trophy,      x: 240, y: 510, labelAnchor: "end",    labelDx: -18, labelDy: 5 },
@@ -113,8 +113,8 @@ const STARS_MOBILE: StarNode[] = [
 ];
 
 const OUTLINE_MOBILE: OutlinePoint[] = [
-  { x: 300, y: 240 },
-  { x: 500, y: 240 },
+  { x: 300, y: 210 },
+  { x: 500, y: 210 },
   { x: 400, y: 620 },
 ];
 
