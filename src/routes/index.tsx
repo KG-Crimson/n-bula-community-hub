@@ -30,11 +30,11 @@ type StarNode = {
 };
 
 const STARS: StarNode[] = [
-  { to: "/salon",      title: "SALÓN DE LA FAMA", desc: "Los campeones legendarios.",       icon: Award,       x: 200, y: 90,  labelAnchor: "end",    labelDx: -18, labelDy: 6 },
-  { to: "/multimedia", title: "MULTIMEDIA",       desc: "Galería de dibujos y arte.",       icon: ImageIcon,   x: 600, y: 90,  labelAnchor: "start",  labelDx: 18,  labelDy: 6 },
-  { to: "/anuncios",   title: "ANUNCIOS",         desc: "Novedades de la comunidad.",       icon: Megaphone,   x: 400, y: 235, labelAnchor: "middle", labelDx: 0,   labelDy: -28 },
-  { to: "/torneos",    title: "TORNEOS",          desc: "Bracket, posiciones y eventos.",   icon: Trophy,      x: 250, y: 400, labelAnchor: "end",    labelDx: -18, labelDy: 6 },
-  { to: "/calendario", title: "CALENDARIO",       desc: "Jornadas en tiempo real.",         icon: CalendarDays,x: 550, y: 400, labelAnchor: "start",  labelDx: 18,  labelDy: 6 },
+  { to: "/salon",      title: "SALÓN DE LA FAMA", desc: "Los campeones legendarios.",       icon: Award,       x: 180, y: 130, labelAnchor: "end",    labelDx: -22, labelDy: 6 },
+  { to: "/multimedia", title: "MULTIMEDIA",       desc: "Galería de dibujos y arte.",       icon: ImageIcon,   x: 620, y: 130, labelAnchor: "start",  labelDx: 22,  labelDy: 6 },
+  { to: "/anuncios",   title: "ANUNCIOS",         desc: "Novedades de la comunidad.",       icon: Megaphone,   x: 400, y: 250, labelAnchor: "middle", labelDx: 0,   labelDy: -30 },
+  { to: "/torneos",    title: "TORNEOS",          desc: "Bracket, posiciones y eventos.",   icon: Trophy,      x: 280, y: 405, labelAnchor: "end",    labelDx: -22, labelDy: 6 },
+  { to: "/calendario", title: "CALENDARIO",       desc: "Jornadas en tiempo real.",         icon: CalendarDays,x: 520, y: 405, labelAnchor: "start",  labelDx: 22,  labelDy: 6 },
 ];
 
 // Extra outline anchor points (not clickable) that shape Cosmog's silhouette.
