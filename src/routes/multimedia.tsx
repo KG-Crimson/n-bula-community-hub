@@ -5,6 +5,10 @@ import parceExpulsado from "@/assets/parce-expulsado.png.asset.json";
 import parceKiss from "@/assets/parce-kiss.png.asset.json";
 import parceObedezcan from "@/assets/parce-obedezcan.png.asset.json";
 import parceSoff from "@/assets/parce-soff.png.asset.json";
+import pnwimsKomala from "@/assets/pnwims-komala.png.asset.json";
+import pnwimsCharizard from "@/assets/pnwims-charizard.png.asset.json";
+import pnwimsHex from "@/assets/pnwims-hex.png.asset.json";
+import pnwimsShiny from "@/assets/pnwims-shiny.png.asset.json";
 
 type Artwork = {
   title: string;
