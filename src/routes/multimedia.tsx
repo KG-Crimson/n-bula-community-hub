@@ -1,5 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Heart, Palette } from "lucide-react";
+import parceKiss from "@/assets/parce-kiss.png.asset.json";
+import parceObedezcan from "@/assets/parce-obedezcan.png.asset.json";
+import parceSoff from "@/assets/parce-soff.png.asset.json";
+
+type Artwork = {
+  title: string;
+  artist: string;
+  likes: number;
+  gradient?: string;
+  tall?: boolean;
+  image?: string;
+};
 
 export const Route = createFileRoute("/multimedia")({
   head: () => ({
