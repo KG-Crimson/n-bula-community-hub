@@ -55,12 +55,12 @@ function MultimediaPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-3 sm:gap-4">
           {ARTWORKS.map((a) => (
             <figure
               key={a.title}
-              className={`group relative overflow-hidden rounded-2xl border border-gold/20 shadow-[0_0_30px_oklch(0.65_0.24_305/0.15)] ${
-                a.tall ? "row-span-2 aspect-[3/5]" : "aspect-square"
+              className={`group relative mb-3 sm:mb-4 overflow-hidden rounded-2xl border border-gold/20 bg-background shadow-[0_0_30px_oklch(0.65_0.24_305/0.15)] break-inside-avoid ${
+                a.image ? "" : a.tall ? "aspect-[3/5]" : "aspect-square"
               }`}
             >
               {a.image ? (
@@ -68,7 +68,7 @@ function MultimediaPage() {
                   src={a.image}
                   alt={a.title}
                   loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="w-full h-auto"
                 />
               ) : (
                 <>
