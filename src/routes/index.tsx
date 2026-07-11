@@ -154,7 +154,7 @@ const CONFIG_MOBILE: ConstellationConfig = {
   outline: OUTLINE_MOBILE,
   silhouette: SILHOUETTE_MOBILE,
   cloudPuffs: CLOUD_PUFFS_MOBILE,
-  topGem: "M 400 238 L 414 278 L 400 318 L 386 278 Z",
+  topGem: "M 400 258 L 414 298 L 400 338 L 386 298 Z",
   bottomGem: "M 400 562 L 414 602 L 400 610 L 386 602 Z",
   starOuter: 15,
   starInner: 6,
