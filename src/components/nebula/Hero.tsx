@@ -1,4 +1,4 @@
-import logoAsset from "@/assets/nebula-logo-v3.png.asset.json";
+import logoAsset from "@/assets/nebula-logo-v4.png.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 import { Bell, Users, Activity } from "lucide-react";
 import { Link } from "@tanstack/react-router";
