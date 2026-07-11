@@ -324,7 +324,7 @@ function Index() {
 
             {/* Mobile / tablet constellation — taller, roomier layout */}
             <div className="md:hidden">
-              <Constellation config={CONFIG_MOBILE} className="min-h-[420px] sm:min-h-[480px]" />
+              <Constellation config={CONFIG_MOBILE} className="min-h-[460px] sm:min-h-[520px]" />
             </div>
           </div>
 
