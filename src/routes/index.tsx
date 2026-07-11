@@ -30,9 +30,9 @@ type StarNode = {
 };
 
 const STARS: StarNode[] = [
-  { to: "/salon",      title: "SALÓN DE LA FAMA", desc: "Los campeones legendarios.",       icon: Award,       x: 180, y: 130, labelAnchor: "end",    labelDx: -22, labelDy: 6 },
+  { to: "/salon",      title: "SALÓN DE LA FAMA", desc: "Los campeones legendarios.",       icon: Award,       x: 400, y: 250, labelAnchor: "middle", labelDx: 0,   labelDy: -30 },
   { to: "/multimedia", title: "MULTIMEDIA",       desc: "Galería de dibujos y arte.",       icon: ImageIcon,   x: 620, y: 130, labelAnchor: "start",  labelDx: 22,  labelDy: 6 },
-  { to: "/anuncios",   title: "ANUNCIOS",         desc: "Novedades de la comunidad.",       icon: Megaphone,   x: 400, y: 250, labelAnchor: "middle", labelDx: 0,   labelDy: -30 },
+  { to: "/anuncios",   title: "ANUNCIOS",         desc: "Novedades de la comunidad.",       icon: Megaphone,   x: 180, y: 130, labelAnchor: "end",    labelDx: -22, labelDy: 6 },
   { to: "/torneos",    title: "TORNEOS",          desc: "Bracket, posiciones y eventos.",   icon: Trophy,      x: 280, y: 405, labelAnchor: "end",    labelDx: -22, labelDy: 6 },
   { to: "/calendario", title: "CALENDARIO",       desc: "Jornadas en tiempo real.",         icon: CalendarDays,x: 520, y: 405, labelAnchor: "start",  labelDx: 22,  labelDy: 6 },
 ];
