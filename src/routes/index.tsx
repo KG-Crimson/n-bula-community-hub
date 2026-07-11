@@ -39,10 +39,42 @@ const STARS: StarNode[] = [
 
 // Extra outline anchor points (not clickable) that shape Cosmog's silhouette.
 const OUTLINE: { x: number; y: number }[] = [
-  { x: 310, y: 180 }, // between left ear and head
-  { x: 490, y: 180 }, // between right ear and head
-  { x: 400, y: 490 }, // bottom tuft
+  { x: 300, y: 220 }, // left cloud → body junction
+  { x: 500, y: 220 }, // right cloud → body junction
+  { x: 400, y: 500 }, // bottom of body / lower gem
 ];
+
+// Scalloped-circle path (cloud puff / fluffy body) — one closed subpath.
+function scallop(cx: number, cy: number, r: number, bumps: number, amp: number, phase = 0) {
+  const n = bumps * 2;
+  const step = (Math.PI * 2) / n;
+  const pts: Array<[number, number]> = [];
+  for (let i = 0; i < n; i++) {
+    const a = i * step - Math.PI / 2 + phase;
+    const rr = i % 2 === 0 ? r + amp : r - amp * 0.25;
+    pts.push([cx + Math.cos(a) * rr, cy + Math.sin(a) * rr]);
+  }
+  // smooth via Q curves anchored on each vertex, endpoints at mid-segments
+  const mid = (a: [number, number], b: [number, number]): [number, number] => [
+    (a[0] + b[0]) / 2,
+    (a[1] + b[1]) / 2,
+  ];
+  const start = mid(pts[n - 1], pts[0]);
+  let d = `M ${start[0].toFixed(2)} ${start[1].toFixed(2)}`;
+  for (let i = 0; i < n; i++) {
+    const p = pts[i];
+    const nx = mid(p, pts[(i + 1) % n]);
+    d += ` Q ${p[0].toFixed(2)} ${p[1].toFixed(2)} ${nx[0].toFixed(2)} ${nx[1].toFixed(2)}`;
+  }
+  return d + " Z";
+}
+
+// Cosmog anatomy — three fluffy shapes combined into a single fill
+const COSMOG_SILHOUETTE = [
+  scallop(180, 165, 110, 7, 14, 0.2),      // left cloud puff
+  scallop(620, 165, 110, 7, 14, -0.2),     // right cloud puff
+  scallop(400, 400, 155, 9, 16, 0),        // fluffy body
+].join(" ");
 
 // Star index shortcuts
 const S = {
