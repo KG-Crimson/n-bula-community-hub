@@ -61,13 +61,23 @@ function MultimediaPage() {
                 a.tall ? "row-span-2 aspect-[3/5]" : "aspect-square"
               }`}
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${a.gradient}`} />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,oklch(1_0_0/0.25),transparent_60%)]" />
-              <div className="absolute inset-0 flex items-center justify-center opacity-30">
-                <Palette className="h-16 w-16 text-white/80" />
-              </div>
+              {a.image ? (
+                <img
+                  src={a.image}
+                  alt={a.title}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              ) : (
+                <>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${a.gradient}`} />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,oklch(1_0_0/0.25),transparent_60%)]" />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-30">
+                    <Palette className="h-16 w-16 text-white/80" />
+                  </div>
+                </>
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent opacity-90" />
-              <figcaption className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
                 <div className="font-display text-sm sm:text-base md:text-lg text-foreground truncate">{a.title}</div>
                 <div className="flex items-center justify-between mt-1 gap-2">
                   <span className="text-[10px] sm:text-xs text-gold tracking-widest truncate">{a.artist}</span>
