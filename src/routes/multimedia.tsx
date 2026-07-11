@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Heart, Palette } from "lucide-react";
+import { Heart, Palette, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import parceExpulsado from "@/assets/parce-expulsado.png.asset.json";
 import parceKiss from "@/assets/parce-kiss.png.asset.json";
 import parceObedezcan from "@/assets/parce-obedezcan.png.asset.json";
