@@ -88,16 +88,20 @@ const S = {
 // Lines that connect the constellation into Cosmog's outline.
 // Each edge references either a STAR index (s) or an OUTLINE index (o).
 const EDGES: { a: { k: "s" | "o"; i: number }; b: { k: "s" | "o"; i: number } }[] = [
-  { a: { k: "s", i: S.salon },      b: { k: "o", i: 0 } },
-  { a: { k: "o", i: 0 },            b: { k: "s", i: S.anuncios } },
-  { a: { k: "s", i: S.anuncios },   b: { k: "o", i: 1 } },
+  // top arc: left puff -> salon -> right puff
+  { a: { k: "s", i: S.anuncios },   b: { k: "o", i: 0 } },
+  { a: { k: "o", i: 0 },            b: { k: "s", i: S.salon } },
+  { a: { k: "s", i: S.salon },      b: { k: "o", i: 1 } },
   { a: { k: "o", i: 1 },            b: { k: "s", i: S.multimedia } },
+  // sides of Cosmog's body
   { a: { k: "s", i: S.anuncios },   b: { k: "s", i: S.torneos } },
-  { a: { k: "s", i: S.anuncios },   b: { k: "s", i: S.calendario } },
+  { a: { k: "s", i: S.multimedia }, b: { k: "s", i: S.calendario } },
+  // bottom arc
   { a: { k: "s", i: S.torneos },    b: { k: "o", i: 2 } },
   { a: { k: "o", i: 2 },            b: { k: "s", i: S.calendario } },
+  // center spokes
   { a: { k: "s", i: S.salon },      b: { k: "s", i: S.torneos } },
-  { a: { k: "s", i: S.multimedia }, b: { k: "s", i: S.calendario } },
+  { a: { k: "s", i: S.salon },      b: { k: "s", i: S.calendario } },
 ];
 
 // Background sparkle stars (purely decorative)
