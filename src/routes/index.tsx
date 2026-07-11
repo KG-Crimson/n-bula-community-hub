@@ -30,19 +30,51 @@ type StarNode = {
 };
 
 const STARS: StarNode[] = [
-  { to: "/salon",      title: "SALÓN DE LA FAMA", desc: "Los campeones legendarios.",       icon: Award,       x: 200, y: 90,  labelAnchor: "end",    labelDx: -18, labelDy: 6 },
-  { to: "/multimedia", title: "MULTIMEDIA",       desc: "Galería de dibujos y arte.",       icon: ImageIcon,   x: 600, y: 90,  labelAnchor: "start",  labelDx: 18,  labelDy: 6 },
-  { to: "/anuncios",   title: "ANUNCIOS",         desc: "Novedades de la comunidad.",       icon: Megaphone,   x: 400, y: 235, labelAnchor: "middle", labelDx: 0,   labelDy: -28 },
-  { to: "/torneos",    title: "TORNEOS",          desc: "Bracket, posiciones y eventos.",   icon: Trophy,      x: 250, y: 400, labelAnchor: "end",    labelDx: -18, labelDy: 6 },
-  { to: "/calendario", title: "CALENDARIO",       desc: "Jornadas en tiempo real.",         icon: CalendarDays,x: 550, y: 400, labelAnchor: "start",  labelDx: 18,  labelDy: 6 },
+  { to: "/salon",      title: "SALÓN DE LA FAMA", desc: "Los campeones legendarios.",       icon: Award,       x: 180, y: 130, labelAnchor: "end",    labelDx: -22, labelDy: 6 },
+  { to: "/multimedia", title: "MULTIMEDIA",       desc: "Galería de dibujos y arte.",       icon: ImageIcon,   x: 620, y: 130, labelAnchor: "start",  labelDx: 22,  labelDy: 6 },
+  { to: "/anuncios",   title: "ANUNCIOS",         desc: "Novedades de la comunidad.",       icon: Megaphone,   x: 400, y: 250, labelAnchor: "middle", labelDx: 0,   labelDy: -30 },
+  { to: "/torneos",    title: "TORNEOS",          desc: "Bracket, posiciones y eventos.",   icon: Trophy,      x: 280, y: 405, labelAnchor: "end",    labelDx: -22, labelDy: 6 },
+  { to: "/calendario", title: "CALENDARIO",       desc: "Jornadas en tiempo real.",         icon: CalendarDays,x: 520, y: 405, labelAnchor: "start",  labelDx: 22,  labelDy: 6 },
 ];
 
 // Extra outline anchor points (not clickable) that shape Cosmog's silhouette.
 const OUTLINE: { x: number; y: number }[] = [
-  { x: 310, y: 180 }, // between left ear and head
-  { x: 490, y: 180 }, // between right ear and head
-  { x: 400, y: 490 }, // bottom tuft
+  { x: 300, y: 220 }, // left cloud → body junction
+  { x: 500, y: 220 }, // right cloud → body junction
+  { x: 400, y: 500 }, // bottom of body / lower gem
 ];
+
+// Scalloped-circle path (cloud puff / fluffy body) — one closed subpath.
+function scallop(cx: number, cy: number, r: number, bumps: number, amp: number, phase = 0) {
+  const n = bumps * 2;
+  const step = (Math.PI * 2) / n;
+  const pts: Array<[number, number]> = [];
+  for (let i = 0; i < n; i++) {
+    const a = i * step - Math.PI / 2 + phase;
+    const rr = i % 2 === 0 ? r + amp : r - amp * 0.25;
+    pts.push([cx + Math.cos(a) * rr, cy + Math.sin(a) * rr]);
+  }
+  // smooth via Q curves anchored on each vertex, endpoints at mid-segments
+  const mid = (a: [number, number], b: [number, number]): [number, number] => [
+    (a[0] + b[0]) / 2,
+    (a[1] + b[1]) / 2,
+  ];
+  const start = mid(pts[n - 1], pts[0]);
+  let d = `M ${start[0].toFixed(2)} ${start[1].toFixed(2)}`;
+  for (let i = 0; i < n; i++) {
+    const p = pts[i];
+    const nx = mid(p, pts[(i + 1) % n]);
+    d += ` Q ${p[0].toFixed(2)} ${p[1].toFixed(2)} ${nx[0].toFixed(2)} ${nx[1].toFixed(2)}`;
+  }
+  return d + " Z";
+}
+
+// Cosmog anatomy — three fluffy shapes combined into a single fill
+const COSMOG_SILHOUETTE = [
+  scallop(180, 165, 110, 7, 14, 0.2),      // left cloud puff
+  scallop(620, 165, 110, 7, 14, -0.2),     // right cloud puff
+  scallop(400, 400, 155, 9, 16, 0),        // fluffy body
+].join(" ");
 
 // Star index shortcuts
 const S = {
@@ -133,33 +165,53 @@ function Index() {
               {/* Nebula haze */}
               <ellipse cx="400" cy="290" rx="360" ry="230" fill="url(#nebula-bg)" />
 
-              {/* Cosmog silhouette — single path so overlaps don't stack alpha */}
-              <path
-                d="
-                  M 200 90
-                  L 285 195
-                  Q 340 220 400 232
-                  Q 460 220 515 195
-                  L 600 90
-                  L 555 190
-                  Q 625 215 655 300
-                  Q 665 410 570 475
-                  Q 490 510 400 510
-                  Q 310 510 230 475
-                  Q 135 410 145 300
-                  Q 175 215 245 190
-                  Z
-                "
-                fill="oklch(0.65 0.22 300)"
-                fillOpacity="0.10"
-                stroke="oklch(0.85 0.18 90)"
-                strokeOpacity="0.35"
-                strokeWidth="1.25"
-                strokeDasharray="2 6"
-                strokeLinejoin="round"
-              />
-              {/* Inner shading to hint at Cosmog's cloud volume */}
-              <ellipse cx="400" cy="360" rx="180" ry="110" fill="oklch(0.65 0.22 300)" fillOpacity="0.07" />
+              {/* Cosmog silhouette — left puff + right puff + fluffy body, filled as one shape */}
+              <g>
+                {/* soft purple fill (drawn once, no alpha stacking on overlaps) */}
+                <path
+                  d={COSMOG_SILHOUETTE}
+                  fill="oklch(0.55 0.24 315)"
+                  fillOpacity="0.12"
+                  fillRule="nonzero"
+                />
+                {/* cloud puffs get a bluer tint layered on top */}
+                <path
+                  d={[
+                    scallop(180, 165, 110, 7, 14, 0.2),
+                    scallop(620, 165, 110, 7, 14, -0.2),
+                  ].join(" ")}
+                  fill="oklch(0.60 0.18 240)"
+                  fillOpacity="0.10"
+                />
+                {/* dashed gold constellation outline */}
+                <path
+                  d={COSMOG_SILHOUETTE}
+                  fill="none"
+                  stroke="oklch(0.85 0.18 90)"
+                  strokeOpacity="0.42"
+                  strokeWidth="1.25"
+                  strokeDasharray="2 6"
+                  strokeLinejoin="round"
+                />
+                {/* Cosmog's gold gems — top pointing down, bottom pointing up */}
+                <path
+                  d="M 400 218 L 414 258 L 400 298 L 386 258 Z"
+                  fill="oklch(0.85 0.16 90)"
+                  fillOpacity="0.55"
+                  stroke="oklch(0.90 0.18 92)"
+                  strokeOpacity="0.7"
+                  strokeWidth="1"
+                />
+                <path
+                  d="M 400 502 L 414 542 L 400 550 L 386 542 Z"
+                  fill="oklch(0.85 0.16 90)"
+                  fillOpacity="0.55"
+                  stroke="oklch(0.90 0.18 92)"
+                  strokeOpacity="0.7"
+                  strokeWidth="1"
+                />
+              </g>
+
 
 
               {/* Background sparkles */}
