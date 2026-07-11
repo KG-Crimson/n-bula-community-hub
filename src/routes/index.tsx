@@ -133,6 +133,35 @@ function Index() {
               {/* Nebula haze */}
               <ellipse cx="400" cy="290" rx="360" ry="230" fill="url(#nebula-bg)" />
 
+              {/* Cosmog silhouette — single path so overlaps don't stack alpha */}
+              <path
+                d="
+                  M 200 90
+                  L 285 195
+                  Q 340 220 400 232
+                  Q 460 220 515 195
+                  L 600 90
+                  L 555 190
+                  Q 625 215 655 300
+                  Q 665 410 570 475
+                  Q 490 510 400 510
+                  Q 310 510 230 475
+                  Q 135 410 145 300
+                  Q 175 215 245 190
+                  Z
+                "
+                fill="oklch(0.65 0.22 300)"
+                fillOpacity="0.10"
+                stroke="oklch(0.85 0.18 90)"
+                strokeOpacity="0.35"
+                strokeWidth="1.25"
+                strokeDasharray="2 6"
+                strokeLinejoin="round"
+              />
+              {/* Inner shading to hint at Cosmog's cloud volume */}
+              <ellipse cx="400" cy="360" rx="180" ry="110" fill="oklch(0.65 0.22 300)" fillOpacity="0.07" />
+
+
               {/* Background sparkles */}
               {SPARKLES.map((s, i) => (
                 <circle key={i} cx={s.x} cy={s.y} r={s.r} fill="oklch(0.95 0.05 90)" opacity={s.o}>
