@@ -33,14 +33,14 @@ export const Route = createFileRoute("/multimedia")({
 });
 
 const ARTWORKS: Artwork[] = [
-  { title: "EXPULSADO.", artist: "@parce", likes: 512, image: parceExpulsado.url, tall: true },
-  { title: "Amor Greninja", artist: "@parce", likes: 342, image: parceKiss.url, tall: true },
-  { title: "¡Obedezcan!", artist: "@parce", likes: 289, image: parceObedezcan.url },
-  { title: "La Funa a SOFF", artist: "@parce", likes: 415, image: parceSoff.url },
-  { title: "Komala dormilón", artist: "@pnwims", likes: 234, image: pnwimsKomala.url },
-  { title: "Charizard flamígero", artist: "@pnwims", likes: 398, image: pnwimsCharizard.url },
-  { title: "Hex Maniac", artist: "@pnwims", likes: 356, image: pnwimsHex.url, tall: true },
-  { title: "Koraidon shiny", artist: "@pnwims", likes: 412, image: pnwimsShiny.url, tall: true },
+  { title: "EXPULSADO.", artist: "@parce", likes: 512, image: assetUrl(parceExpulsado.url), tall: true },
+  { title: "Amor Greninja", artist: "@parce", likes: 342, image: assetUrl(parceKiss.url), tall: true },
+  { title: "¡Obedezcan!", artist: "@parce", likes: 289, image: assetUrl(parceObedezcan.url) },
+  { title: "La Funa a SOFF", artist: "@parce", likes: 415, image: assetUrl(parceSoff.url) },
+  { title: "Komala dormilón", artist: "@pnwims", likes: 234, image: assetUrl(pnwimsKomala.url) },
+  { title: "Charizard flamígero", artist: "@pnwims", likes: 398, image: assetUrl(pnwimsCharizard.url) },
+  { title: "Hex Maniac", artist: "@pnwims", likes: 356, image: assetUrl(pnwimsHex.url), tall: true },
+  { title: "Koraidon shiny", artist: "@pnwims", likes: 412, image: assetUrl(pnwimsShiny.url), tall: true },
   { title: "Lunala nocturna", artist: "@stellaria", likes: 128, gradient: "from-indigo-500 via-purple-600 to-pink-500", tall: true },
   { title: "Solgaleo dorado", artist: "@auralite", likes: 96, gradient: "from-amber-400 via-orange-500 to-rose-500" },
   { title: "Necrozma prisma", artist: "@nyxbyte", likes: 210, gradient: "from-cyan-400 via-fuchsia-500 to-violet-600" },
