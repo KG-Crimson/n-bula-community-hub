@@ -165,33 +165,53 @@ function Index() {
               {/* Nebula haze */}
               <ellipse cx="400" cy="290" rx="360" ry="230" fill="url(#nebula-bg)" />
 
-              {/* Cosmog silhouette — single path so overlaps don't stack alpha */}
-              <path
-                d="
-                  M 200 90
-                  L 285 195
-                  Q 340 220 400 232
-                  Q 460 220 515 195
-                  L 600 90
-                  L 555 190
-                  Q 625 215 655 300
-                  Q 665 410 570 475
-                  Q 490 510 400 510
-                  Q 310 510 230 475
-                  Q 135 410 145 300
-                  Q 175 215 245 190
-                  Z
-                "
-                fill="oklch(0.65 0.22 300)"
-                fillOpacity="0.10"
-                stroke="oklch(0.85 0.18 90)"
-                strokeOpacity="0.35"
-                strokeWidth="1.25"
-                strokeDasharray="2 6"
-                strokeLinejoin="round"
-              />
-              {/* Inner shading to hint at Cosmog's cloud volume */}
-              <ellipse cx="400" cy="360" rx="180" ry="110" fill="oklch(0.65 0.22 300)" fillOpacity="0.07" />
+              {/* Cosmog silhouette — left puff + right puff + fluffy body, filled as one shape */}
+              <g>
+                {/* soft purple fill (drawn once, no alpha stacking on overlaps) */}
+                <path
+                  d={COSMOG_SILHOUETTE}
+                  fill="oklch(0.55 0.24 315)"
+                  fillOpacity="0.12"
+                  fillRule="nonzero"
+                />
+                {/* cloud puffs get a bluer tint layered on top */}
+                <path
+                  d={[
+                    scallop(180, 165, 110, 7, 14, 0.2),
+                    scallop(620, 165, 110, 7, 14, -0.2),
+                  ].join(" ")}
+                  fill="oklch(0.60 0.18 240)"
+                  fillOpacity="0.10"
+                />
+                {/* dashed gold constellation outline */}
+                <path
+                  d={COSMOG_SILHOUETTE}
+                  fill="none"
+                  stroke="oklch(0.85 0.18 90)"
+                  strokeOpacity="0.42"
+                  strokeWidth="1.25"
+                  strokeDasharray="2 6"
+                  strokeLinejoin="round"
+                />
+                {/* Cosmog's gold gems — top pointing down, bottom pointing up */}
+                <path
+                  d="M 400 218 L 414 258 L 400 298 L 386 258 Z"
+                  fill="oklch(0.85 0.16 90)"
+                  fillOpacity="0.55"
+                  stroke="oklch(0.90 0.18 92)"
+                  strokeOpacity="0.7"
+                  strokeWidth="1"
+                />
+                <path
+                  d="M 400 502 L 414 542 L 400 550 L 386 542 Z"
+                  fill="oklch(0.85 0.16 90)"
+                  fillOpacity="0.55"
+                  stroke="oklch(0.90 0.18 92)"
+                  strokeOpacity="0.7"
+                  strokeWidth="1"
+                />
+              </g>
+
 
 
               {/* Background sparkles */}
