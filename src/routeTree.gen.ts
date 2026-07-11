@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TorneosRouteImport } from './routes/torneos'
 import { Route as SalonRouteImport } from './routes/salon'
 import { Route as MultimediaRouteImport } from './routes/multimedia'
+import { Route as CalendarioRouteImport } from './routes/calendario'
 import { Route as AnunciosRouteImport } from './routes/anuncios'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const MultimediaRoute = MultimediaRouteImport.update({
   path: '/multimedia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalendarioRoute = CalendarioRouteImport.update({
+  id: '/calendario',
+  path: '/calendario',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnunciosRoute = AnunciosRouteImport.update({
   id: '/anuncios',
   path: '/anuncios',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/anuncios': typeof AnunciosRoute
+  '/calendario': typeof CalendarioRoute
   '/multimedia': typeof MultimediaRoute
   '/salon': typeof SalonRoute
   '/torneos': typeof TorneosRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/anuncios': typeof AnunciosRoute
+  '/calendario': typeof CalendarioRoute
   '/multimedia': typeof MultimediaRoute
   '/salon': typeof SalonRoute
   '/torneos': typeof TorneosRoute
@@ -59,21 +67,36 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/anuncios': typeof AnunciosRoute
+  '/calendario': typeof CalendarioRoute
   '/multimedia': typeof MultimediaRoute
   '/salon': typeof SalonRoute
   '/torneos': typeof TorneosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/anuncios' | '/multimedia' | '/salon' | '/torneos'
+  fullPaths:
+    | '/'
+    | '/anuncios'
+    | '/calendario'
+    | '/multimedia'
+    | '/salon'
+    | '/torneos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/anuncios' | '/multimedia' | '/salon' | '/torneos'
-  id: '__root__' | '/' | '/anuncios' | '/multimedia' | '/salon' | '/torneos'
+  to: '/' | '/anuncios' | '/calendario' | '/multimedia' | '/salon' | '/torneos'
+  id:
+    | '__root__'
+    | '/'
+    | '/anuncios'
+    | '/calendario'
+    | '/multimedia'
+    | '/salon'
+    | '/torneos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnunciosRoute: typeof AnunciosRoute
+  CalendarioRoute: typeof CalendarioRoute
   MultimediaRoute: typeof MultimediaRoute
   SalonRoute: typeof SalonRoute
   TorneosRoute: typeof TorneosRoute
@@ -102,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MultimediaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calendario': {
+      id: '/calendario'
+      path: '/calendario'
+      fullPath: '/calendario'
+      preLoaderRoute: typeof CalendarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/anuncios': {
       id: '/anuncios'
       path: '/anuncios'
@@ -122,6 +152,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnunciosRoute: AnunciosRoute,
+  CalendarioRoute: CalendarioRoute,
   MultimediaRoute: MultimediaRoute,
   SalonRoute: SalonRoute,
   TorneosRoute: TorneosRoute,
