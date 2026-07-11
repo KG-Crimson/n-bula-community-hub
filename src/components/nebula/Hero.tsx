@@ -14,7 +14,7 @@ export function Hero() {
 
         <div className="relative animate-float-slow">
           <img
-            src={logo}
+            src={assetUrl(logoAsset.url)}
             alt="Nébula"
             width={1152}
             height={576}
