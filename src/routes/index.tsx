@@ -328,15 +328,8 @@ function Index() {
             </div>
           </div>
 
-          {/* Fallback grid on small screens for accessibility */}
-          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:hidden gap-2">
-            {CONFIG_MOBILE.stars.map(({ to, title, icon: Icon }) => (
-              <Link key={to} to={to} className="card-nebula rounded-xl p-3 flex items-center gap-2 text-xs font-bold tracking-widest text-gold-gradient">
-                <Icon className="h-4 w-4 text-gold" />
-                {title}
-              </Link>
-            ))}
-          </div>
+
+
         </div>
       </section>
     </>
