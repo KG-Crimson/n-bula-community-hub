@@ -138,6 +138,27 @@ function PageTransition({ children }: { children: ReactNode }) {
   );
 }
 
+const ROUTES_TO_PREFETCH = ["/", "/torneos", "/calendario", "/anuncios", "/multimedia", "/salon"] as const;
+
+function RoutePrefetcher() {
+  const router = useRouter();
+  useEffect(() => {
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number };
+    const run = () => {
+      for (const to of ROUTES_TO_PREFETCH) {
+        void router.preloadRoute({ to });
+      }
+    };
+    if (typeof w.requestIdleCallback === "function") {
+      w.requestIdleCallback(run, { timeout: 2000 });
+    } else {
+      const t = setTimeout(run, 800);
+      return () => clearTimeout(t);
+    }
+  }, [router]);
+  return null;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
@@ -156,6 +177,7 @@ function RootComponent() {
         />
         <div className="fixed inset-0 -z-10 bg-background/55" aria-hidden />
         <StarField />
+        <RoutePrefetcher />
         <Header />
         <main>
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
