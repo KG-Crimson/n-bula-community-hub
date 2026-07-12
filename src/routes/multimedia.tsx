@@ -68,7 +68,7 @@ function MultimediaPage() {
         </div>
 
         <div className="columns-2 md:columns-3 lg:columns-4 gap-3 sm:gap-4">
-          {ARTWORKS.map((a) => (
+          {ARTWORKS.map((a, i) => (
             <figure
               key={a.title}
               onClick={() => setSelected(a)}
@@ -80,9 +80,12 @@ function MultimediaPage() {
                 <img
                   src={a.image}
                   alt={a.title}
-                  loading="lazy"
+                  loading={i < 4 ? "eager" : "lazy"}
+                  decoding="async"
+                  fetchPriority={i < 2 ? "high" : "auto"}
                   className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
                 />
+
               ) : (
                 <>
                   <div className={`absolute inset-0 bg-gradient-to-br ${a.gradient}`} />
