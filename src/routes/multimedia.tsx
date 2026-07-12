@@ -44,6 +44,9 @@ const ARTWORKS: Artwork[] = [
   { title: "Charizard flamígero", artist: "@pnwims", likes: 398, image: assetUrl(pnwimsCharizard.url) },
   { title: "Hex Maniac", artist: "@pnwims", likes: 356, image: assetUrl(pnwimsHex.url), tall: true },
   { title: "Koraidon shiny", artist: "@pnwims", likes: 412, image: assetUrl(pnwimsShiny.url), tall: true },
+  { title: "Juegan con las patas", artist: "@andueza", likes: 187, image: assetUrl(anduezaPatas.url) },
+  { title: "Tan malos van a ser", artist: "@andueza", likes: 205, image: assetUrl(anduezaMalos.url) },
+  { title: "Soff, la mejor entrenadora", artist: "@andueza", likes: 268, image: assetUrl(anduezaSoff.url) },
 ];
 
 function MultimediaPage() {
