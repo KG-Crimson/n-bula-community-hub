@@ -228,14 +228,14 @@
 }
 
 @keyframes page-enter {
-  0% { opacity: 0; transform: translateY(14px) scale(0.985); filter: blur(2px); }
-  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 @utility animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
 @utility animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
 @utility animate-pulse-gold { animation: pulse-gold 2.5s ease-in-out infinite; }
-@utility animate-page-enter { animation: page-enter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@utility animate-page-enter { animation: page-enter 0.18s ease-out both; }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-page-enter {
