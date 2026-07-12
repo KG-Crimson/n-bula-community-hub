@@ -10,6 +10,9 @@ import pnwimsKomala from "@/assets/pnwims-komala.png.asset.json";
 import pnwimsCharizard from "@/assets/pnwims-charizard.png.asset.json";
 import pnwimsHex from "@/assets/pnwims-hex.png.asset.json";
 import pnwimsShiny from "@/assets/pnwims-shiny.png.asset.json";
+import anduezaPatas from "@/assets/andueza-patas.png.asset.json";
+import anduezaMalos from "@/assets/andueza-malos.png.asset.json";
+import anduezaSoff from "@/assets/andueza-soff.png.asset.json";
 
 type Artwork = {
   title: string;
