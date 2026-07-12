@@ -1,13 +1,19 @@
+import { useMemo } from "react";
+
 export function StarField() {
-  const stars = Array.from({ length: 60 }, (_, i) => ({
-    id: i,
-    top: Math.random() * 100,
-    left: Math.random() * 100,
-    size: Math.random() * 2 + 1,
-    delay: Math.random() * 3,
-  }));
+  const stars = useMemo(
+    () =>
+      Array.from({ length: 45 }, (_, i) => ({
+        id: i,
+        top: Math.random() * 100,
+        left: Math.random() * 100,
+        size: Math.random() * 2 + 1,
+        delay: Math.random() * 3,
+      })),
+    [],
+  );
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       {stars.map((s) => (
         <span
           key={s.id}
