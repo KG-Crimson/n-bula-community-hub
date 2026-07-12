@@ -17,39 +17,20 @@ const ANNOUNCEMENTS = [
   {
     tag: "IMPORTANTE",
     icon: Pin,
-    date: "8 JUL 2026",
-    title: "Inscripciones abiertas · Copa Celestial",
-    body: "Ya puedes inscribirte para la próxima Copa Celestial. 16 plazas disponibles, formato BO3, sistema suizo + eliminatorias. Inscripción hasta el 11 de julio a las 22:00 CEST.",
+    date: "12 JUL 2026",
+    title: "Comunicado oficial: Juego limpio en el torneo",
+    body: "Hemos detectado trampas en participantes que han modificado habilidades, añadido movimientos ilegales en la ROM base o ignorado las reglas de captura de ruta. Se han analizado las ROMs una por una y sabemos quiénes son. Si has cometido alguna ilegalidad, abre un ticket de forma sincera para evitar la expulsión inmediata; solo se aplicará una advertencia y la retirada de la presente edición. Buscamos una competencia justa y honesta para todos.",
     pinned: true,
   },
   {
-    tag: "COMUNIDAD",
+    tag: "TIKTOK",
     icon: Users,
-    date: "5 JUL 2026",
-    title: "Superamos los 750 miembros",
-    body: "Gracias a toda la comunidad por hacerlo posible. Como celebración desbloqueamos un nuevo canal de estrategia competitiva y roles cosméticos para todos.",
+    date: "3 JUN 2026",
+    title: "CUENTA DE TIKTOK OFICIAL",
+    body: "Por fin después de tanto tiempo tenemos cuenta. Desde ahora, se subirán clips de los torneos, batallas, eventos etc. Quiénes tengan ideas para videos no duden en comentarlo, nos encantaría saberlo. ¡Vayan a seguirla! Enlace: ",
+    link: "https://www.tiktok.com/@servernebula", 
   },
-  {
-    tag: "EVENTOS",
-    icon: Trophy,
-    date: "1 JUL 2026",
-    title: "Resultados Torneo Draft Junio",
-    body: "Enhorabuena a Cynthia_99 por ganar el torneo Draft de junio, con Leon Ch. como subcampeón. Ambos entran directos al Salón de la Fama estacional.",
-  },
-  {
-    tag: "NOVEDAD",
-    icon: Sparkles,
-    date: "28 JUN 2026",
-    title: "Nuevo formato: VGC Regulation H",
-    body: "A partir de julio incorporamos partidas VGC Regulation H a las noches temáticas de los miércoles. Consulta las reglas en el canal #reglas-vgc.",
-  },
-  {
-    tag: "COMUNIDAD",
-    icon: Megaphone,
-    date: "22 JUN 2026",
-    title: "Renovación de moderación",
-    body: "Damos la bienvenida a tres nuevos moderadores elegidos por la comunidad. Puedes consultar el equipo completo en el canal #staff.",
-  },
+  
 ];
 
 function AnunciosPage() {
@@ -89,7 +70,21 @@ function AnunciosPage() {
                       <span className="text-[10px] tracking-[0.2em] text-muted-foreground ml-auto">{a.date}</span>
                     </div>
                     <h2 className="font-display text-xl sm:text-2xl text-foreground mb-2">{a.title}</h2>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{a.body}</p>
+                    
+                    {/* El párrafo ahora junta el texto y el enlace clickeable directamente */}
+                    <p className="text-sm text-muted-foreground leading-relaxed break-all">
+                      {a.body}
+                      {a.link && (
+                        <a 
+                          href={a.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-gold hover:underline font-medium inline-block ml-1"
+                        >
+                          {a.link}
+                        </a>
+                      )}
+                    </p>
                   </div>
                 </div>
               </article>
