@@ -160,6 +160,84 @@ const STATUS_STYLES: Record<Tramo["status"], { badge: string; label: string; ico
   },
 };
 
+function TramoDetails({ tramo }: { tramo: Tramo }) {
+  const [tab, setTab] = useState<"lideres" | "rutas">("lideres");
+
+  return (
+    <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-1">
+      <div className="flex gap-2 mb-4 border-t border-gold/10 pt-4">
+        <button
+          onClick={() => setTab("lideres")}
+          className={`flex-1 px-3 py-2 rounded-lg text-[11px] font-bold tracking-widest uppercase transition-all border ${
+            tab === "lideres"
+              ? "bg-gold/10 text-gold border-gold/40"
+              : "bg-transparent text-muted-foreground border-transparent hover:text-white"
+          }`}
+        >
+          <Swords className="h-3 w-3 inline mr-1.5 -mt-0.5" />
+          {tramo.isLiga ? "Líderes / Alto Mando" : "Gimnasios"}
+        </button>
+        <button
+          onClick={() => setTab("rutas")}
+          className={`flex-1 px-3 py-2 rounded-lg text-[11px] font-bold tracking-widest uppercase transition-all border ${
+            tab === "rutas"
+              ? "bg-gold/10 text-gold border-gold/40"
+              : "bg-transparent text-muted-foreground border-transparent hover:text-white"
+          }`}
+        >
+          <MapPin className="h-3 w-3 inline mr-1.5 -mt-0.5" />
+          Rutas ({tramo.rutas.length})
+        </button>
+      </div>
+
+      {tab === "lideres" && (
+        <div className="space-y-2">
+          {tramo.gyms.map((gym) => (
+            <div
+              key={gym.name}
+              className="flex items-center justify-between p-3 rounded-lg bg-background/60 border border-gold/5"
+            >
+              <div>
+                <div className="text-sm font-semibold text-white">{gym.name}</div>
+                {gym.note && (
+                  <div className="text-[11px] text-muted-foreground italic mt-0.5">{gym.note}</div>
+                )}
+              </div>
+              <span className="px-3 py-1 rounded-md bg-gold/10 border border-gold/20 text-gold text-xs font-bold whitespace-nowrap">
+                Nv. {gym.level}
+              </span>
+            </div>
+          ))}
+
+          <div className="flex items-center justify-between p-3 rounded-lg bg-purple-500/5 border border-purple-500/20 mt-3">
+            <div className="flex items-center gap-2">
+              <Swords className="h-4 w-4 text-purple-400" />
+              <span className="text-sm font-bold text-white">{tramo.combate.label}</span>
+            </div>
+            <span className="px-3 py-1 rounded-md bg-purple-500/15 border border-purple-500/30 text-purple-300 text-xs font-bold whitespace-nowrap">
+              Nv. {tramo.combate.level}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {tab === "rutas" && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {tramo.rutas.map((ruta) => (
+            <div
+              key={ruta}
+              className="flex items-center gap-2 p-2.5 rounded-lg bg-background/60 border border-gold/5"
+            >
+              <MapPin className="h-3.5 w-3.5 text-gold/70 shrink-0" />
+              <span className="text-xs text-white/90">{ruta}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function AventuraPage() {
   const [expanded, setExpanded] = useState<number | null>(4);
 
