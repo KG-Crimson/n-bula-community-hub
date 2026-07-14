@@ -34,7 +34,7 @@ const CHAMPS: Champion[] = [
     game: "Pokémon Negro",
     players: "16 personas",
     team: [
-      { id: 409, name: "g" },
+      { id: 409, name: "Abdiel" },
       { id: 135, name: "Jolteon" },
       { id: 9, name: "Blastoise" },
       { id: 169, name: "Crobat" },
