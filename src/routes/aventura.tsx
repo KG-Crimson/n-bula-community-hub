@@ -100,7 +100,7 @@ const STATUS_STYLES: Record<Tramo["status"], { badge: string; label: string; ico
 };
 
 function AventuraPage() {
-  const [expanded, setExpanded] = useState<number | null>(2);
+  const [expanded, setExpanded] = useState<number | null>(4);
 
   return (
     <div className="pt-10 pb-24 px-4 sm:px-6 lg:px-8">
