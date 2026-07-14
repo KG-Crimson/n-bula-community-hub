@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { Lock, CheckCircle2, Swords, Trophy, Zap } from "lucide-react";
+import { Lock, CheckCircle2, Swords, Trophy, Zap, MapPin } from "lucide-react";
 
 export const Route = createFileRoute("/aventura")({
   head: () => ({
@@ -26,6 +26,7 @@ type Tramo = {
   status: "completado" | "en-curso" | "bloqueado";
   gyms: GymLeader[];
   combate: { label: string; level: number };
+  rutas: string[];
   isLiga?: boolean;
 };
 
@@ -39,6 +40,24 @@ const TRAMOS: Tramo[] = [
       { name: "Antón", level: 20 },
     ],
     combate: { label: "Combate 1", level: 21 },
+    rutas: [
+      "Starter Pueblo Primavera",
+      "Huevo Elm",
+      "Ruta 29",
+      "Ciudad Cerezo",
+      "Ruta 46",
+      "Ruta 30",
+      "Ruta 31",
+      "Cueva Oscura",
+      "Torre Bellsprout",
+      "Ruta 32",
+      "Ciudad Malva",
+      "Ruinas Alfa",
+      "Cueva Unión",
+      "Ruta 33",
+      "Pozo Slowpoke",
+      "Lapras (viernes, Pozo Slowpoke)",
+    ],
   },
   {
     id: 2,
@@ -50,6 +69,23 @@ const TRAMOS: Tramo[] = [
       { name: "Anibal", level: 37 },
     ],
     combate: { label: "Combate 2", level: 39 },
+    rutas: [
+      "Encinar (captura extra por combate en Showdown)",
+      "Ruta 34",
+      "Ruta 35",
+      "Ruta 36",
+      "Ruta 37",
+      "Ciudad Iris",
+      "Torre Quemada",
+      "Ruta 38",
+      "Ruta 39",
+      "Ciudad Olivo",
+      "Ruta 40",
+      "Ruta 41",
+      "Ciudad Orquídea",
+      "Shuckle (regalo en Orquídea)",
+      "Spearow (regalo al salir de Trigal hacia arriba)",
+    ],
   },
   {
     id: 3,
@@ -60,6 +96,17 @@ const TRAMOS: Tramo[] = [
       { name: "Fredo", level: 42, note: "Nivel real 38, se ajusta a 42 (no menor al anterior)" },
     ],
     combate: { label: "Combate 3", level: 45 },
+    rutas: [
+      "Ruta 42 (captura extra por combate en Showdown)",
+      "Monte Mortero",
+      "Ruta 43",
+      "Lago Furia + Gyarados Rojo",
+      "Zona Safari",
+      "Guarida Rocket (baldosas)",
+      "Ruta 47",
+      "Ruta 48",
+      "Cueva Acantilado",
+    ],
   },
   {
     id: 4,
@@ -75,6 +122,20 @@ const TRAMOS: Tramo[] = [
       { name: "Lance (Campeón)", level: 60 },
     ],
     combate: { label: "Combate 4 · Final", level: 100 },
+    rutas: [
+      "Ruta 44 (captura extra por combate en Showdown)",
+      "Ruta 45",
+      "Cueva Hielo",
+      "Ciudad Endrino",
+      "Guarida Dragón",
+      "Ruta 27",
+      "Ruta 26",
+      "Calle Victoria",
+      "Islas Remolino",
+      "Monte Plateado",
+      "Torre Campana + Ho-Oh",
+      "Cataratas Tohjo",
+    ],
   },
 ];
 
@@ -98,6 +159,84 @@ const STATUS_STYLES: Record<Tramo["status"], { badge: string; label: string; ico
     ring: "border-gold/10",
   },
 };
+
+function TramoDetails({ tramo }: { tramo: Tramo }) {
+  const [tab, setTab] = useState<"lideres" | "rutas">("lideres");
+
+  return (
+    <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-1">
+      <div className="flex gap-2 mb-4 border-t border-gold/10 pt-4">
+        <button
+          onClick={() => setTab("lideres")}
+          className={`flex-1 px-3 py-2 rounded-lg text-[11px] font-bold tracking-widest uppercase transition-all border ${
+            tab === "lideres"
+              ? "bg-gold/10 text-gold border-gold/40"
+              : "bg-transparent text-muted-foreground border-transparent hover:text-white"
+          }`}
+        >
+          <Swords className="h-3 w-3 inline mr-1.5 -mt-0.5" />
+          {tramo.isLiga ? "Líderes / Alto Mando" : "Gimnasios"}
+        </button>
+        <button
+          onClick={() => setTab("rutas")}
+          className={`flex-1 px-3 py-2 rounded-lg text-[11px] font-bold tracking-widest uppercase transition-all border ${
+            tab === "rutas"
+              ? "bg-gold/10 text-gold border-gold/40"
+              : "bg-transparent text-muted-foreground border-transparent hover:text-white"
+          }`}
+        >
+          <MapPin className="h-3 w-3 inline mr-1.5 -mt-0.5" />
+          Rutas ({tramo.rutas.length})
+        </button>
+      </div>
+
+      {tab === "lideres" && (
+        <div className="space-y-2">
+          {tramo.gyms.map((gym) => (
+            <div
+              key={gym.name}
+              className="flex items-center justify-between p-3 rounded-lg bg-background/60 border border-gold/5"
+            >
+              <div>
+                <div className="text-sm font-semibold text-white">{gym.name}</div>
+                {gym.note && (
+                  <div className="text-[11px] text-muted-foreground italic mt-0.5">{gym.note}</div>
+                )}
+              </div>
+              <span className="px-3 py-1 rounded-md bg-gold/10 border border-gold/20 text-gold text-xs font-bold whitespace-nowrap">
+                Nv. {gym.level}
+              </span>
+            </div>
+          ))}
+
+          <div className="flex items-center justify-between p-3 rounded-lg bg-purple-500/5 border border-purple-500/20 mt-3">
+            <div className="flex items-center gap-2">
+              <Swords className="h-4 w-4 text-purple-400" />
+              <span className="text-sm font-bold text-white">{tramo.combate.label}</span>
+            </div>
+            <span className="px-3 py-1 rounded-md bg-purple-500/15 border border-purple-500/30 text-purple-300 text-xs font-bold whitespace-nowrap">
+              Nv. {tramo.combate.level}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {tab === "rutas" && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {tramo.rutas.map((ruta) => (
+            <div
+              key={ruta}
+              className="flex items-center gap-2 p-2.5 rounded-lg bg-background/60 border border-gold/5"
+            >
+              <MapPin className="h-3.5 w-3.5 text-gold/70 shrink-0" />
+              <span className="text-xs text-white/90">{ruta}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function AventuraPage() {
   const [expanded, setExpanded] = useState<number | null>(4);
@@ -134,66 +273,45 @@ function AventuraPage() {
                     )}
                   </div>
 
-                  <button
-                    onClick={() => setExpanded(isOpen ? null : tramo.id)}
-                    className={`w-full text-left card-nebula rounded-2xl p-5 sm:p-6 bg-background/50 border transition-all hover:bg-background/70 ${style.ring}`}
+                  <div
+                    className={`card-nebula rounded-2xl bg-background/50 border transition-all ${style.ring}`}
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-                      <div>
-                        <div className="text-[10px] font-bold tracking-[0.3em] text-gold/70 mb-1">
-                          TRAMO {tramo.id}
+                    <button
+                      onClick={() => setExpanded(isOpen ? null : tramo.id)}
+                      className="w-full text-left p-5 sm:p-6 hover:bg-background/30 transition-colors rounded-2xl"
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                        <div>
+                          <div className="text-[10px] font-bold tracking-[0.3em] text-gold/70 mb-1">
+                            TRAMO {tramo.id}
+                          </div>
+                          <h2 className="font-display text-xl sm:text-2xl text-white">
+                            {tramo.title}
+                          </h2>
                         </div>
-                        <h2 className="font-display text-xl sm:text-2xl text-white">
-                          {tramo.title}
-                        </h2>
+                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest border ${style.badge}`}>
+                          {style.icon}
+                          {style.label}
+                        </span>
                       </div>
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest border ${style.badge}`}>
-                        {style.icon}
-                        {style.label}
-                      </span>
-                    </div>
 
-                    <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-                      <span>{tramo.gyms.length} {tramo.isLiga ? "líderes / Alto Mando" : "gimnasios"}</span>
-                      <span className="text-gold/40">·</span>
-                      <span className="text-gold">{tramo.combate.label}</span>
-                    </div>
+                      <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                        <span>{tramo.gyms.length} {tramo.isLiga ? "líderes / Alto Mando" : "gimnasios"}</span>
+                        <span className="text-gold/40">·</span>
+                        <span className="inline-flex items-center gap-1"><MapPin className="h-3 w-3" />{tramo.rutas.length} rutas</span>
+                        <span className="text-gold/40">·</span>
+                        <span className="text-gold">{tramo.combate.label}</span>
+                      </div>
+
+                      <div className="mt-3 text-[11px] text-gold/60 tracking-wider">
+                        {isOpen ? "▲ Ocultar detalles" : "▼ Ver detalles del tramo"}
+                      </div>
+                    </button>
 
                     {isOpen && (
-                      <div className="mt-5 pt-5 border-t border-gold/10 space-y-2">
-                        {tramo.gyms.map((gym) => (
-                          <div
-                            key={gym.name}
-                            className="flex items-center justify-between p-3 rounded-lg bg-background/60 border border-gold/5"
-                          >
-                            <div>
-                              <div className="text-sm font-semibold text-white">{gym.name}</div>
-                              {gym.note && (
-                                <div className="text-[11px] text-muted-foreground italic mt-0.5">{gym.note}</div>
-                              )}
-                            </div>
-                            <span className="px-3 py-1 rounded-md bg-gold/10 border border-gold/20 text-gold text-xs font-bold whitespace-nowrap">
-                              Nv. {gym.level}
-                            </span>
-                          </div>
-                        ))}
-
-                        <div className="flex items-center justify-between p-3 rounded-lg bg-purple-500/5 border border-purple-500/20 mt-3">
-                          <div className="flex items-center gap-2">
-                            <Swords className="h-4 w-4 text-purple-400" />
-                            <span className="text-sm font-bold text-white">{tramo.combate.label}</span>
-                          </div>
-                          <span className="px-3 py-1 rounded-md bg-purple-500/15 border border-purple-500/30 text-purple-300 text-xs font-bold whitespace-nowrap">
-                            Nv. {tramo.combate.level}
-                          </span>
-                        </div>
-                      </div>
+                      <TramoDetails tramo={tramo} />
                     )}
-
-                    <div className="mt-3 text-[11px] text-gold/60 tracking-wider">
-                      {isOpen ? "▲ Ocultar detalles" : "▼ Ver detalles del tramo"}
-                    </div>
-                  </button>
+                  </div>
                 </div>
               );
             })}
