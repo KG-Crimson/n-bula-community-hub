@@ -280,6 +280,8 @@ export function TournamentCalendar() {
           </div>
 
         </div>
+
+        <RulesAccordion />
       </div>
     </section>
   );
