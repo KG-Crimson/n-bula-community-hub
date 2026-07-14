@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { Lock, CheckCircle2, Swords, Trophy, Zap, MapPin } from "lucide-react";
+import { Lock, CheckCircle2, Swords, Trophy, Zap, MapPin, Scroll, Heart, Skull, ShieldAlert, Ban, Pickaxe, Egg, Gem } from "lucide-react";
 
 export const Route = createFileRoute("/aventura")({
   head: () => ({
