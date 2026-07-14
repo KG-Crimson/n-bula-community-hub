@@ -22,7 +22,6 @@ type GymLeader = {
 
 type Tramo = {
   id: number;
-  title: string;
   status: "completado" | "en-curso" | "bloqueado";
   gyms: GymLeader[];
   combate: { label: string; level: number };
@@ -33,7 +32,6 @@ type Tramo = {
 const TRAMOS: Tramo[] = [
   {
     id: 1,
-    title: "Primeros pasos",
     status: "completado",
     gyms: [
       { name: "Pegaso", level: 16 },
@@ -61,7 +59,6 @@ const TRAMOS: Tramo[] = [
   },
   {
     id: 2,
-    title: "Consolidando el equipo",
     status: "completado",
     gyms: [
       { name: "Blanca", level: 23 },
@@ -89,7 +86,6 @@ const TRAMOS: Tramo[] = [
   },
   {
     id: 3,
-    title: "Mitad del camino",
     status: "completado",
     gyms: [
       { name: "Yasmina", level: 42 },
@@ -110,7 +106,6 @@ const TRAMOS: Tramo[] = [
   },
   {
     id: 4,
-    title: "La Liga Pokémon",
     status: "en-curso",
     isLiga: true,
     gyms: [
@@ -281,14 +276,9 @@ function AventuraPage() {
                       className="w-full text-left p-5 sm:p-6 hover:bg-background/30 transition-colors rounded-2xl"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-                        <div>
-                          <div className="text-[10px] font-bold tracking-[0.3em] text-gold/70 mb-1">
-                            TRAMO {tramo.id}
-                          </div>
-                          <h2 className="font-display text-xl sm:text-2xl text-white">
-                            {tramo.title}
-                          </h2>
-                        </div>
+                        <h2 className="font-display text-xl sm:text-2xl text-white">
+                          TRAMO {tramo.id}
+                        </h2>
                         <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest border ${style.badge}`}>
                           {style.icon}
                           {style.label}
