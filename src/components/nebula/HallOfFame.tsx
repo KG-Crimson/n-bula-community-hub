@@ -34,7 +34,7 @@ const CHAMPS: Champion[] = [
     game: "Pokémon Negro",
     players: "16 personas",
     team: [
-      { id: 409, name: "Rampardos" },
+      { id: 409, name: "g" },
       { id: 135, name: "Jolteon" },
       { id: 9, name: "Blastoise" },
       { id: 169, name: "Crobat" },
@@ -132,9 +132,7 @@ export function HallOfFame() {
           <div className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.4em] text-gold mb-3">
             <Crown className="h-3.5 w-3.5" /> LEGADO
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-6xl text-gold-gradient mb-4">
-            SALÓN DE LA FAMA
-          </h2>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-6xl text-gold-gradient mb-4">SALÓN DE LA FAMA</h2>
           <p className="text-muted-foreground text-sm md:text-base px-4">
             Toca una tarjeta para ver los detalles del torneo.
           </p>
@@ -172,9 +170,7 @@ function TournamentLogo({ champ }: { champ: Champion }) {
       <Sparkles className="absolute bottom-3 right-3 h-2.5 w-2.5 text-pink/70" />
       <div className="relative text-center">
         <div className="text-[9px] font-bold tracking-[0.3em] text-gold/90">COPA</div>
-        <div className="font-display text-2xl sm:text-3xl text-gold-gradient leading-none">
-          {champ.volume}
-        </div>
+        <div className="font-display text-2xl sm:text-3xl text-gold-gradient leading-none">{champ.volume}</div>
         <div className="text-[8px] tracking-[0.25em] text-white/70 mt-0.5">NEBULA</div>
       </div>
     </div>
@@ -221,11 +217,12 @@ function ChampionCard({ champ }: { champ: Champion }) {
               <span className="text-[10px] font-bold tracking-[0.3em] text-gold/80">COPA NEBULA</span>
               <span className="text-[10px] font-black text-gold">{champ.volume}</span>
             </div>
-            <div className="font-display text-lg sm:text-xl text-foreground truncate">
-              {champ.game}
-            </div>
+            <div className="font-display text-lg sm:text-xl text-foreground truncate">{champ.game}</div>
             <div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1"><Users className="h-3 w-3" />{champ.players}</span>
+              <span className="flex items-center gap-1">
+                <Users className="h-3 w-3" />
+                {champ.players}
+              </span>
               {isOngoing ? (
                 <span className="text-pink font-bold tracking-wider">EN CURSO</span>
               ) : (
@@ -262,7 +259,10 @@ function ChampionCard({ champ }: { champ: Champion }) {
                 <div className="flex items-center gap-2">
                   <div className="h-9 w-9 rounded-full overflow-hidden bg-background border border-gold/40 shrink-0">
                     <img
-                      src={champ.avatarSrc || `https://api.dicebear.com/9.x/adventurer/svg?seed=${champ.avatarSeed}&backgroundColor=6b21a8,7c3aed,9333ea`}
+                      src={
+                        champ.avatarSrc ||
+                        `https://api.dicebear.com/9.x/adventurer/svg?seed=${champ.avatarSeed}&backgroundColor=6b21a8,7c3aed,9333ea`
+                      }
                       alt=""
                       width={36}
                       height={36}
@@ -289,23 +289,23 @@ function ChampionCard({ champ }: { champ: Champion }) {
                 <div className="text-[10px] font-bold tracking-[0.3em] text-gold/80 mb-3">EQUIPO CAMPEÓN</div>
                 <div className="grid grid-cols-6 gap-1.5 sm:gap-2 place-items-center">
                   {champ.team.map((p) => (
-                  <div key={p.id} className="group/poke flex flex-col items-center">
-                    <div
-                      title={p.name}
-                      className="relative inline-flex items-center justify-center rounded-md bg-background/60 overflow-hidden hover:shadow-[0_0_16px_oklch(0.83_0.16_85/0.5)] transition-all"
-                    >
-                      <img
-                        src={`${PMD_PORTRAIT}/${String(p.id).padStart(4, "0")}/Normal.png`}
-                        alt={p.name}
-                        loading="lazy"
-                        decoding="async"
-                        width={40}
-                        height={40}
-                        style={{ imageRendering: "pixelated" }}
-                        className="block h-10 w-10 sm:h-12 sm:w-12 object-contain"
-                      />
-                      <div className="absolute inset-0 rounded-[inherit] border border-gold/30 group-hover/poke:border-gold pointer-events-none z-10" />
-                    </div>
+                    <div key={p.id} className="group/poke flex flex-col items-center">
+                      <div
+                        title={p.name}
+                        className="relative inline-flex items-center justify-center rounded-md bg-background/60 overflow-hidden hover:shadow-[0_0_16px_oklch(0.83_0.16_85/0.5)] transition-all"
+                      >
+                        <img
+                          src={`${PMD_PORTRAIT}/${String(p.id).padStart(4, "0")}/Normal.png`}
+                          alt={p.name}
+                          loading="lazy"
+                          decoding="async"
+                          width={40}
+                          height={40}
+                          style={{ imageRendering: "pixelated" }}
+                          className="block h-10 w-10 sm:h-12 sm:w-12 object-contain"
+                        />
+                        <div className="absolute inset-0 rounded-[inherit] border border-gold/30 group-hover/poke:border-gold pointer-events-none z-10" />
+                      </div>
                       <div className="mt-1 text-[9px] text-muted-foreground truncate max-w-[64px] text-center">
                         {p.name}
                       </div>
