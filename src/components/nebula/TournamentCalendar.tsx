@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChevronDown, Swords, Trophy, Shield, Sparkles, Gauge, Gavel } from "lucide-react";
+import { ChevronDown, Swords, Trophy, Shield, Sparkles, Gauge, Gavel, Gift, Skull, Target, ShieldCheck } from "lucide-react";
 
 type Partido = {
   ronda: string;
@@ -151,6 +151,95 @@ function RulesAccordion() {
   );
 }
 
+function RewardsSection() {
+  const combatRewards = [
+    {
+      label: "Ganador",
+      icon: <Trophy className="w-5 h-5 text-emerald-400" />,
+      items: ["Captura extra en la siguiente ruta", "Captura extra a elección del tramo anterior", "Ruleta"],
+    },
+    {
+      label: "Perdedor",
+      icon: <Skull className="w-5 h-5 text-rose-400" />,
+      items: ["2 capturas extras en la siguiente ruta"],
+    },
+    {
+      label: "No participar",
+      icon: <ShieldCheck className="w-5 h-5 text-muted-foreground" />,
+      items: ["No obtienes nada"],
+    },
+  ];
+
+  const rouletteItems = [
+    "Nada",
+    "Cambio de habilidad",
+    "Cambio de naturaleza",
+    "Objeto competitivo",
+    "Nada",
+    "Objeto evolutivo",
+    "Pokémon inicial",
+    "Pokémon Pseudo",
+    "Nada",
+    "Elegir próximo rival",
+    "Quitarle un Pokémon a tu rival (de los 6 que utilizó en el combate)",
+    "Captura extra",
+    "Escudo: protege a un Pokémon de morir, pero cuenta la vida perdida",
+  ];
+
+  return (
+    <div className="mt-10">
+      <div className="text-center mb-8">
+        <div className="text-[10px] font-bold tracking-[0.4em] text-gold mb-3">PREMIOS</div>
+        <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-purple-gradient">
+          RECOMPENSAS DE COMBATE
+        </h3>
+      </div>
+
+      <div className="card-nebula rounded-3xl p-4 md:p-8 bg-background/40 border border-gold/15 shadow-xl space-y-8">
+        <div className="grid gap-4 sm:grid-cols-3">
+          {combatRewards.map((reward) => (
+            <div
+              key={reward.label}
+              className="rounded-2xl border border-gold/10 bg-background/60 p-4"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                {reward.icon}
+                <span className="font-display text-base sm:text-lg text-white">{reward.label}</span>
+              </div>
+              <ul className="space-y-2">
+                {reward.items.map((item, idx) => (
+                  <li key={idx} className="flex gap-2 text-sm text-muted-foreground leading-relaxed">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="rounded-2xl border border-gold/10 bg-background/60 p-4 md:p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <Gift className="w-5 h-5 text-gold" />
+            <span className="font-display text-base sm:text-lg text-white">Ruleta</span>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {rouletteItems.map((item, idx) => (
+              <div
+                key={idx}
+                className="flex items-center gap-2 rounded-xl bg-background/40 border border-gold/5 px-3 py-2 text-sm text-muted-foreground"
+              >
+                <Target className="w-3.5 h-3.5 text-gold/70 shrink-0" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function TournamentCalendar() {
   const [grupoSeleccionado, setGrupoSeleccionado] = useState<string>("Grupo 1");
   const [rondaSeleccionada, setRondaSeleccionada] = useState<string>("Ronda 1");
@@ -293,6 +382,7 @@ export function TournamentCalendar() {
         </div>
 
         <RulesAccordion />
+        <RewardsSection />
       </div>
     </section>
   );
