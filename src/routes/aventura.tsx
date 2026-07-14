@@ -26,6 +26,7 @@ type Tramo = {
   status: "completado" | "en-curso" | "bloqueado";
   gyms: GymLeader[];
   combate: { label: string; level: number };
+  rutas: string[];
   isLiga?: boolean;
 };
 
