@@ -43,7 +43,7 @@ const TRAMOS: Tramo[] = [
   {
     id: 2,
     title: "Consolidando el equipo",
-    status: "en-curso",
+    status: "completado",
     gyms: [
       { name: "Blanca", level: 23 },
       { name: "Morti", level: 30 },
@@ -54,7 +54,7 @@ const TRAMOS: Tramo[] = [
   {
     id: 3,
     title: "Mitad del camino",
-    status: "bloqueado",
+    status: "completado",
     gyms: [
       { name: "Yasmina", level: 42 },
       { name: "Fredo", level: 42, note: "Nivel real 38, se ajusta a 42 (no menor al anterior)" },
@@ -64,7 +64,7 @@ const TRAMOS: Tramo[] = [
   {
     id: 4,
     title: "La Liga Pokémon",
-    status: "bloqueado",
+    status: "en-curso",
     isLiga: true,
     gyms: [
       { name: "Débora", level: 49 },
@@ -100,7 +100,7 @@ const STATUS_STYLES: Record<Tramo["status"], { badge: string; label: string; ico
 };
 
 function AventuraPage() {
-  const [expanded, setExpanded] = useState<number | null>(2);
+  const [expanded, setExpanded] = useState<number | null>(4);
 
   return (
     <div className="pt-10 pb-24 px-4 sm:px-6 lg:px-8">
