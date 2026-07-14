@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChevronDown, Swords, Trophy, Shield, Sparkles, Gauge } from "lucide-react";
+import { ChevronDown, Swords, Trophy, Shield, Sparkles, Gauge, Gavel } from "lucide-react";
 
 type Partido = {
   ronda: string;
