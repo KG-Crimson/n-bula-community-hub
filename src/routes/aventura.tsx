@@ -127,7 +127,6 @@ const TRAMOS: Tramo[] = [
       "Ruta 26",
       "Calle Victoria",
       "Islas Remolino",
-      "Monte Plateado",
       "Torre Campana + Ho-Oh",
       "Cataratas Tohjo",
     ],
