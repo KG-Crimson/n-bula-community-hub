@@ -78,7 +78,7 @@ const TRAMOS: Tramo[] = [
   },
 ];
 
-const STATUS_STYLES: Record<Tramo["status"], { badge: string; label: string; icon: JSX.Element; ring: string }> = {
+const STATUS_STYLES: Record<Tramo["status"], { badge: string; label: string; icon: ReactNode; ring: string }> = {
   "completado": {
     badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
     label: "COMPLETADO",
