@@ -195,66 +195,45 @@ function AventuraPage() {
                     )}
                   </div>
 
-                  <button
-                    onClick={() => setExpanded(isOpen ? null : tramo.id)}
-                    className={`w-full text-left card-nebula rounded-2xl p-5 sm:p-6 bg-background/50 border transition-all hover:bg-background/70 ${style.ring}`}
+                  <div
+                    className={`card-nebula rounded-2xl bg-background/50 border transition-all ${style.ring}`}
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-                      <div>
-                        <div className="text-[10px] font-bold tracking-[0.3em] text-gold/70 mb-1">
-                          TRAMO {tramo.id}
+                    <button
+                      onClick={() => setExpanded(isOpen ? null : tramo.id)}
+                      className="w-full text-left p-5 sm:p-6 hover:bg-background/30 transition-colors rounded-2xl"
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                        <div>
+                          <div className="text-[10px] font-bold tracking-[0.3em] text-gold/70 mb-1">
+                            TRAMO {tramo.id}
+                          </div>
+                          <h2 className="font-display text-xl sm:text-2xl text-white">
+                            {tramo.title}
+                          </h2>
                         </div>
-                        <h2 className="font-display text-xl sm:text-2xl text-white">
-                          {tramo.title}
-                        </h2>
+                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest border ${style.badge}`}>
+                          {style.icon}
+                          {style.label}
+                        </span>
                       </div>
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest border ${style.badge}`}>
-                        {style.icon}
-                        {style.label}
-                      </span>
-                    </div>
 
-                    <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-                      <span>{tramo.gyms.length} {tramo.isLiga ? "líderes / Alto Mando" : "gimnasios"}</span>
-                      <span className="text-gold/40">·</span>
-                      <span className="text-gold">{tramo.combate.label}</span>
-                    </div>
+                      <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                        <span>{tramo.gyms.length} {tramo.isLiga ? "líderes / Alto Mando" : "gimnasios"}</span>
+                        <span className="text-gold/40">·</span>
+                        <span className="inline-flex items-center gap-1"><MapPin className="h-3 w-3" />{tramo.rutas.length} rutas</span>
+                        <span className="text-gold/40">·</span>
+                        <span className="text-gold">{tramo.combate.label}</span>
+                      </div>
+
+                      <div className="mt-3 text-[11px] text-gold/60 tracking-wider">
+                        {isOpen ? "▲ Ocultar detalles" : "▼ Ver detalles del tramo"}
+                      </div>
+                    </button>
 
                     {isOpen && (
-                      <div className="mt-5 pt-5 border-t border-gold/10 space-y-2">
-                        {tramo.gyms.map((gym) => (
-                          <div
-                            key={gym.name}
-                            className="flex items-center justify-between p-3 rounded-lg bg-background/60 border border-gold/5"
-                          >
-                            <div>
-                              <div className="text-sm font-semibold text-white">{gym.name}</div>
-                              {gym.note && (
-                                <div className="text-[11px] text-muted-foreground italic mt-0.5">{gym.note}</div>
-                              )}
-                            </div>
-                            <span className="px-3 py-1 rounded-md bg-gold/10 border border-gold/20 text-gold text-xs font-bold whitespace-nowrap">
-                              Nv. {gym.level}
-                            </span>
-                          </div>
-                        ))}
-
-                        <div className="flex items-center justify-between p-3 rounded-lg bg-purple-500/5 border border-purple-500/20 mt-3">
-                          <div className="flex items-center gap-2">
-                            <Swords className="h-4 w-4 text-purple-400" />
-                            <span className="text-sm font-bold text-white">{tramo.combate.label}</span>
-                          </div>
-                          <span className="px-3 py-1 rounded-md bg-purple-500/15 border border-purple-500/30 text-purple-300 text-xs font-bold whitespace-nowrap">
-                            Nv. {tramo.combate.level}
-                          </span>
-                        </div>
-                      </div>
+                      <TramoDetails tramo={tramo} />
                     )}
-
-                    <div className="mt-3 text-[11px] text-gold/60 tracking-wider">
-                      {isOpen ? "▲ Ocultar detalles" : "▼ Ver detalles del tramo"}
-                    </div>
-                  </button>
+                  </div>
                 </div>
               );
             })}
