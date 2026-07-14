@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ChevronDown, Swords, Trophy, Shield, Sparkles, Gauge } from "lucide-react";
 
 type Partido = {
   ronda: string;
@@ -17,6 +18,127 @@ const GIDS_GRUPOS: { [key: string]: string } = {
   "grupo 7": "1014627392",
   "grupo 8": "1960676240"
 };
+
+type RulesSection = {
+  id: string;
+  icon: React.ReactNode;
+  title: string;
+  items: string[];
+};
+
+function RulesAccordion() {
+  const [openSection, setOpenSection] = useState<string | null>("general");
+
+  const sections: RulesSection[] = [
+    {
+      id: "general",
+      icon: <Swords className="w-5 h-5 text-gold" />,
+      title: "Reglas generales",
+      items: [
+        "Se realizarán 4 combates en showdown en los horarios designados entre los participantes.",
+        "Se ganarán 3 puntos por victoria, 1 punto por derrota y 0 si no se presenta al combate.",
+        "Se tendrá que respetar el level cap establecido.",
+        "Los IVS en 31 y los EVS en 1.",
+        "Se usará exactamente el mismo equipo, ataques y naturalezas que en la rom a la hora de pasar el Main del juego. Cualquier cambio se penalizará (puede ser distinto al de la aventura).",
+        "Los combates se realizarán los días sábado a las 7:00 p.m. hora chilena.",
+        "Formato: los participantes estarán divididos en 8 grupos de 10 personas, por lo que sólo combatirá con gente de su grupo y los enfrentamientos serán aleatorios.",
+        "Clasificación: tras realizarse los 4 combates correspondientes, pasarán a los play off los 4 primeros participantes que hayan conseguido más puntos de cada grupo.",
+      ],
+    },
+    {
+      id: "restricciones",
+      icon: <Shield className="w-5 h-5 text-gold" />,
+      title: "Restricciones de combate",
+      items: [
+        "Se pueden usar un máximo de 2 Pokémon especiales en cada equipo, los cuales están definidos más adelante.",
+        "Sleep clause: sólo se puede dormir a un Pokémon a la vez, de lo contrario se perderá por default. Si el rival se duerme así mismo, no contará y el entrenador podrá dormir.",
+        "Habilidades no permitidas por estar desbalanceadas: superguarda y veleta. Los Pokémon que tengan estas habilidades no podrán usarse.",
+        "MTs: la MT esquema no se puede utilizar.",
+        "1 hit KO: movimientos como frío polar, guillotina o fisura no se pueden utilizar.",
+      ],
+    },
+    {
+      id: "boosteo",
+      icon: <Gauge className="w-5 h-5 text-gold" />,
+      title: "Reglas de boosteo",
+      items: [
+        "Un Pokémon solo puede aumentar o disminuir una misma estadística hasta un máximo de 2 niveles mediante movimientos que modifican estadísticas de forma directa.",
+        "Ejemplo: Danza Espada aumenta el Ataque en 2 niveles, por lo que solo puede usarse una vez. Danza Dragón aumenta el Ataque en 1 nivel, por lo que puede usarse hasta dos veces.",
+        "Los aumentos o reducciones que ocurren como efecto secundario con probabilidad no cuentan para este límite. Por ejemplo, Puño Meteoro puede seguir aumentando el Ataque aunque el Pokémon ya haya alcanzado el máximo permitido mediante boosteos directos.",
+        "Del mismo modo, Psíquico puede seguir intentando bajar la Defensa Especial del rival sin restricciones.",
+        "La misma regla se aplica a los movimientos que reducen estadísticas: Llanto Falso reduce la Defensa Especial en 2 niveles, por lo que solo puede utilizarse una vez sobre el mismo objetivo. Látigo reduce la Defensa en 1 nivel, por lo que puede usarse hasta dos veces sobre el mismo objetivo.",
+      ],
+    },
+    {
+      id: "especiales",
+      icon: <Sparkles className="w-5 h-5 text-gold" />,
+      title: "Pokémon especiales",
+      items: [
+        "Para que la competencia sea lo más justa posible, se permiten ciertos Pokémon 'especiales' que pueden ocupar desde 1 hasta 2 espacios permitidos.",
+        "Pseudos: Dragonite, Tyranitar, Salamence, Metagross, Garchomp.",
+        "Singulares: Celebi, Manaphy, Shaymin.",
+        "Excepciones que cuentan como 2 especiales: Slaking, Darkrai, Mew, Jirachi, Shaymin (Forma Cielo), Deoxys (Forma Velocidad).",
+      ],
+    },
+  ];
+
+  return (
+    <div className="mt-10">
+      <div className="text-center mb-8">
+        <div className="text-[10px] font-bold tracking-[0.4em] text-gold mb-3">NORMATIVA</div>
+        <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-purple-gradient">
+          REGLAS DE COMBATE
+        </h3>
+      </div>
+
+      <div className="card-nebula rounded-3xl p-4 md:p-8 bg-background/40 border border-gold/15 shadow-xl">
+        <div className="space-y-3">
+          {sections.map((section) => {
+            const isOpen = openSection === section.id;
+            return (
+              <div
+                key={section.id}
+                className="rounded-2xl border border-gold/10 bg-background/60 overflow-hidden"
+              >
+                <button
+                  onClick={() => setOpenSection(isOpen ? null : section.id)}
+                  className="w-full flex items-center justify-between p-4 text-left transition-colors hover:bg-gold/5"
+                >
+                  <div className="flex items-center gap-3">
+                    {section.icon}
+                    <span className="font-display text-base sm:text-lg text-white">
+                      {section.title}
+                    </span>
+                  </div>
+                  <ChevronDown
+                    className={`w-5 h-5 text-gold transition-transform duration-300 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {isOpen && (
+                  <div className="px-4 pb-4 pt-0">
+                    <ul className="space-y-3">
+                      {section.items.map((item, idx) => (
+                        <li
+                          key={idx}
+                          className="flex gap-3 text-sm text-muted-foreground leading-relaxed"
+                        >
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function TournamentCalendar() {
   const [grupoSeleccionado, setGrupoSeleccionado] = useState<string>("Grupo 1");
@@ -158,6 +280,8 @@ export function TournamentCalendar() {
           </div>
 
         </div>
+
+        <RulesAccordion />
       </div>
     </section>
   );
