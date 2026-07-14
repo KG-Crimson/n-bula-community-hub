@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { Lock, CheckCircle2, Swords, Trophy, Zap, MapPin, Scroll, Heart, Skull, ShieldAlert, Ban, Pickaxe, Egg, Gem } from "lucide-react";
+import { Lock, CheckCircle2, Swords, Trophy, Zap, MapPin, Scroll, Heart, Skull, ShieldAlert, Ban, Pickaxe, Egg, Gem, Gavel } from "lucide-react";
 
 export const Route = createFileRoute("/aventura")({
   head: () => ({
@@ -420,6 +420,32 @@ function AventuraPage() {
                 <li className="flex items-start gap-2">
                   <span className="text-gold mt-0.5">•</span>
                   <span><span className="font-semibold text-white">Objetos para atrapar Pokémon</span> (mieles, flautas): no se pueden comprar.</span>
+                </li>
+              </ul>
+            </section>
+
+            <section>
+              <h3 className="font-display text-lg text-gold mb-4 flex items-center gap-2">
+                <Gavel className="h-4 w-4" />
+                Penalizaciones
+              </h3>
+              <p className="text-sm text-white/90 mb-3">Quien no cumpla con las reglas establecidas se le aplicarán las siguientes penalizaciones:</p>
+              <ul className="space-y-3 text-sm text-white/90">
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5">
+                  <span className="text-gold font-bold shrink-0">1.</span>
+                  <span><span className="font-semibold text-white">Infracción leve:</span> solo se te dará el aviso pertinente y se exigirá que no vuelva a pasar. La reincidencia se convierte en moderada.</span>
+                </li>
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5">
+                  <span className="text-gold font-bold shrink-0">2.</span>
+                  <span><span className="font-semibold text-white">Infracción moderada:</span> se penalizará en el torneo, pudiendo ir desde la reducción de puntos hasta perder el combate por default. La reincidencia se convierte en grave.</span>
+                </li>
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5">
+                  <span className="text-gold font-bold shrink-0">3.</span>
+                  <span><span className="font-semibold text-white">Infracción grave:</span> se penalizará con expulsión del torneo o shadow ban en el server.</span>
+                </li>
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-rose-500/5 border border-rose-500/20">
+                  <span className="text-rose-400 font-bold shrink-0">4.</span>
+                  <span><span className="font-semibold text-white">Ban:</span> reincidencia de infracción grave o hacer algo irremediable conllevará la expulsión del server.</span>
                 </li>
               </ul>
             </section>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChevronDown, Swords, Trophy, Shield, Sparkles, Gauge } from "lucide-react";
+import { ChevronDown, Swords, Trophy, Shield, Sparkles, Gauge, Gavel } from "lucide-react";
 
 type Partido = {
   ronda: string;
@@ -78,6 +78,17 @@ function RulesAccordion() {
         "Pseudos: Dragonite, Tyranitar, Salamence, Metagross, Garchomp.",
         "Singulares: Celebi, Manaphy, Shaymin.",
         "Excepciones que cuentan como 2 especiales: Slaking, Darkrai, Mew, Jirachi, Shaymin (Forma Cielo), Deoxys (Forma Velocidad).",
+      ],
+    },
+    {
+      id: "penalizaciones",
+      icon: <Gavel className="w-5 h-5 text-gold" />,
+      title: "Penalizaciones",
+      items: [
+        "Infracción leve: se dará un aviso y se exigirá que no vuelva a ocurrir. La reincidencia eleva la infracción a moderada.",
+        "Infracción moderada: penalización en el torneo, que puede ir desde la reducción de puntos hasta perder el combate por default. La reincidencia eleva la infracción a grave.",
+        "Infracción grave: expulsión del torneo o shadow ban en el servidor.",
+        "Ban: la reincidencia de una infracción grave o cualquier acto irremediable conllevará la expulsión definitiva del servidor.",
       ],
     },
   ];
