@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { Lock, CheckCircle2, Swords, Trophy, Zap, MapPin } from "lucide-react";
+import { Lock, CheckCircle2, Swords, Trophy, Zap, MapPin, Scroll, Heart, Skull, ShieldAlert, Ban, Pickaxe, Egg, Gem } from "lucide-react";
 
 export const Route = createFileRoute("/aventura")({
   head: () => ({
@@ -305,6 +305,124 @@ function AventuraPage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        <div className="mt-16 card-nebula rounded-2xl bg-background/50 border border-gold/10 overflow-hidden">
+          <div className="p-6 sm:p-8 border-b border-gold/10">
+            <div className="flex items-center gap-3 mb-3">
+              <Scroll className="h-5 w-5 text-gold" />
+              <h2 className="font-display text-2xl sm:text-3xl text-white">Normas del torneo</h2>
+            </div>
+            <p className="text-muted-foreground text-sm">
+              El torneo se juega en formato <span className="text-gold font-semibold">Random Nuzlocke</span>. Todos los participantes deben respetar las siguientes reglas.
+            </p>
+          </div>
+
+          <div className="p-6 sm:p-8 space-y-8">
+            <section>
+              <h3 className="font-display text-lg text-gold mb-4 flex items-center gap-2">
+                <ShieldAlert className="h-4 w-4" />
+                Reglas generales
+              </h3>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-white/90">
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5">
+                  <Heart className="h-4 w-4 text-rose-400 shrink-0 mt-0.5" />
+                  <span>20 vidas iniciales más la vida 0. Si pierdes todas las vidas, quedas eliminado.</span>
+                </li>
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5">
+                  <span className="text-gold font-bold shrink-0">Aa</span>
+                  <span>Motes obligatorios para todos los Pokémon.</span>
+                </li>
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5">
+                  <Ban className="h-4 w-4 text-rose-400 shrink-0 mt-0.5" />
+                  <span>No se pueden comprar pociones ni objetos curativos. Solo los que aparezcan en la aventura, y únicamente si el rival los usa primero.</span>
+                </li>
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5">
+                  <span className="text-gold font-bold shrink-0">1º</span>
+                  <span>Solo se puede capturar el primer Pokémon de cada ruta. Si al entrar el nombre cambia a la anterior, es nueva ruta.</span>
+                </li>
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5">
+                  <Skull className="h-4 w-4 text-rose-400 shrink-0 mt-0.5" />
+                  <span>Si un Pokémon se debilita, muere y no se puede volver a usar en la aventura.</span>
+                </li>
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5">
+                  <Egg className="h-4 w-4 text-rose-400 shrink-0 mt-0.5" />
+                  <span>Prohibida la crianza de Pokémon.</span>
+                </li>
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5">
+                  <Pickaxe className="h-4 w-4 text-rose-400 shrink-0 mt-0.5" />
+                  <span>No se pueden farmear rocas del mundo con Golpe Roca para conseguir objetos.</span>
+                </li>
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5">
+                  <Ban className="h-4 w-4 text-rose-400 shrink-0 mt-0.5" />
+                  <span>No se pueden farmear objetos de Pokémon salvaje con ataques como Ladrón (sí en combate de entrenador).</span>
+                </li>
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5">
+                  <Gem className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+                  <span>Prohibido el Shiny Hunt. Si sale uno de forma natural, cuenta como captura extra.</span>
+                </li>
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5">
+                  <Egg className="h-4 w-4 text-rose-400 shrink-0 mt-0.5" />
+                  <span>No se puede reclamar ningún huevo del centro Pokémon de Ciudad Malva (primer gimnasio).</span>
+                </li>
+                <li className="flex items-start gap-2 p-3 rounded-lg bg-background/60 border border-gold/5 md:col-span-2">
+                  <Gem className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+                  <span>Los fósiles equivalen a captura extra.</span>
+                </li>
+              </ul>
+            </section>
+
+            <section>
+              <h3 className="font-display text-lg text-gold mb-4 flex items-center gap-2">
+                <Heart className="h-4 w-4" />
+                Sistema de vidas
+              </h3>
+              <div className="space-y-3 text-sm text-white/90">
+                <p>Todos los participantes comienzan con <span className="text-gold font-semibold">20 vidas</span>. Cada vez que un Pokémon muere, se pierde <span className="text-rose-400 font-semibold">1 vida</span>, sin importar la causa.</p>
+                <div className="p-4 rounded-lg bg-rose-500/5 border border-rose-500/20">
+                  <p className="font-semibold text-white mb-2">¿Cómo se recuperan vidas?</p>
+                  <p>Al finalizar cada tramo se revisan las muertes del período. Si murieron <span className="text-gold font-semibold">4 o más Pokémon</span>, se recuperan <span className="text-emerald-400 font-semibold">+2 vidas</span>. Si murieron 3 o menos, no se recupera ninguna vida.</p>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="p-3 rounded-lg bg-background/60 border border-gold/5 text-center">
+                    <div className="text-rose-400 font-bold">2 muertes</div>
+                    <div className="text-xs text-muted-foreground">+0 vidas</div>
+                  </div>
+                  <div className="p-3 rounded-lg bg-background/60 border border-gold/5 text-center">
+                    <div className="text-rose-400 font-bold">3 muertes</div>
+                    <div className="text-xs text-muted-foreground">+0 vidas</div>
+                  </div>
+                  <div className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/20 text-center">
+                    <div className="text-emerald-400 font-bold">4+ muertes</div>
+                    <div className="text-xs text-muted-foreground">+2 vidas</div>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground italic">Las vidas recuperadas se suman únicamente al finalizar el tramo correspondiente, no de manera inmediata. La caja de muertos es obligatoria al finalizar cada tramo.</p>
+              </div>
+            </section>
+
+            <section>
+              <h3 className="font-display text-lg text-gold mb-4 flex items-center gap-2">
+                <Swords className="h-4 w-4" />
+                Objetos de tienda (Random)
+              </h3>
+              <p className="text-sm text-white/90 mb-3">Se podrán comprar los objetos que se deseen con estas restricciones:</p>
+              <ul className="space-y-2 text-sm text-white/90">
+                <li className="flex items-start gap-2">
+                  <span className="text-gold mt-0.5">•</span>
+                  <span><span className="font-semibold text-white">Objetos competitivos:</span> solo uno por tienda (incluye bayas).</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-gold mt-0.5">•</span>
+                  <span><span className="font-semibold text-white">Master Ball:</span> solo una en toda la aventura.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-gold mt-0.5">•</span>
+                  <span><span className="font-semibold text-white">Objetos para atrapar Pokémon</span> (mieles, flautas): no se pueden comprar.</span>
+                </li>
+              </ul>
+            </section>
           </div>
         </div>
 
