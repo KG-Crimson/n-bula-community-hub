@@ -354,20 +354,33 @@ export function TournamentCalendar() {
           <div className="space-y-3">
             {partidosFiltrados.length > 0 ? (
               partidosFiltrados.map((partido, idx) => (
-                <div key={idx} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 rounded-xl bg-background/60 border border-gold/5 hover:border-gold/15 transition-all text-sm md:text-base">
-                  <div className="flex items-center justify-between gap-2 sm:contents">
-                    <span className="text-white font-medium truncate sm:w-5/12 text-left min-w-0 flex-1 sm:flex-none">{partido.jugador1}</span>
-                    <span className="text-gold/50 text-xs font-bold sm:hidden">VS</span>
-                    <span className="text-white font-medium truncate sm:w-5/12 text-right min-w-0 flex-1 sm:flex-none">{partido.jugador2}</span>
+                <div key={idx} className="p-4 rounded-xl bg-background/60 border border-gold/5 hover:border-gold/15 transition-all text-sm md:text-base">
+                  {/* Mobile: names row + badge below */}
+                  <div className="flex items-center justify-between gap-2 sm:hidden">
+                    <span className="text-white font-medium truncate flex-1 min-w-0 text-left">{partido.jugador1}</span>
+                    <span className="text-gold/50 text-xs font-bold px-2 shrink-0">VS</span>
+                    <span className="text-white font-medium truncate flex-1 min-w-0 text-right">{partido.jugador2}</span>
                   </div>
-                  <div className="flex justify-center sm:min-w-[180px] sm:px-2 sm:shrink-0">
-                    <span className={`px-3 py-1 rounded font-bold text-xs border text-center w-full block whitespace-nowrap ${
-                      partido.resultado
-                      ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
-                      : "bg-gold/5 text-gold/70 border-gold/10 hidden sm:block"
-                    }`}>
-                      {partido.resultado ? `Ganador: ${partido.resultado}` : "VS"}
-                    </span>
+                  {partido.resultado && (
+                    <div className="mt-2 sm:hidden flex justify-center">
+                      <span className="px-3 py-1 rounded font-bold text-xs border bg-emerald-500/10 text-emerald-400 border-emerald-500/20 whitespace-nowrap">
+                        Ganador: {partido.resultado}
+                      </span>
+                    </div>
+                  )}
+                  {/* Desktop/tablet: three columns */}
+                  <div className="hidden sm:flex items-center justify-between gap-3">
+                    <span className="text-white font-medium truncate w-5/12 text-left">{partido.jugador1}</span>
+                    <div className="flex justify-center min-w-[180px] px-2 shrink-0">
+                      <span className={`px-3 py-1 rounded font-bold text-xs border text-center w-full block whitespace-nowrap ${
+                        partido.resultado
+                          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                          : "bg-gold/5 text-gold/70 border-gold/10"
+                      }`}>
+                        {partido.resultado ? `Ganador: ${partido.resultado}` : "VS"}
+                      </span>
+                    </div>
+                    <span className="text-white font-medium truncate w-5/12 text-right">{partido.jugador2}</span>
                   </div>
                 </div>
               ))
