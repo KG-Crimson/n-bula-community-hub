@@ -172,7 +172,7 @@ export function PlayoffBracket() {
       <div className="card-nebula rounded-3xl p-4 md:p-8 bg-background/40 border border-gold/15 shadow-xl">
         {/* Llaves apiladas: izquierda arriba, final al medio, derecha abajo */}
 
-        <div className="lg:hidden space-y-8">
+        <div className="space-y-8">
           <SideMobile title="Llave Izquierda" side={LLAVE_IZQUIERDA} />
           <div className="flex flex-col items-center gap-2 py-4 border-y border-gold/10">
             <Trophy className="w-7 h-7 text-gold" />
