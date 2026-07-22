@@ -87,71 +87,77 @@ const CAMPEON: string = "";
 
 // ============================================================
 
-function Slot({ name, align = "left", highlight = false }: { name: string; align?: "left" | "right"; highlight?: boolean }) {
+function Slot({ name, highlight = false, compact = false }: { name: string; highlight?: boolean; compact?: boolean }) {
   const empty = !name;
   return (
     <div
-      className={`px-3 py-2 rounded-md text-xs sm:text-sm font-medium truncate border transition-colors ${
+      className={`${compact ? "px-2 py-1 text-[11px] sm:text-xs" : "px-3 py-2 text-xs sm:text-sm"} rounded-md font-medium truncate border transition-colors ${
         highlight
           ? "bg-gold/15 text-gold border-gold/40"
           : empty
             ? "bg-background/40 text-muted-foreground/50 border-gold/5 italic"
             : "bg-background/70 text-white border-gold/10"
-      } ${align === "right" ? "text-right" : "text-left"}`}
+      }`}
+      title={name || undefined}
     >
-      {name || "Por definir"}
+      {name || "—"}
     </div>
   );
 }
 
-function MatchCard({ match, align = "left" }: { match: Match; align?: "left" | "right" }) {
-  const { p1, p2, winner } = match;
+function BracketMatch({ m, showConnector }: { m: Match; showConnector?: boolean }) {
   return (
-    <div className="space-y-1">
-      <Slot name={p1} align={align} highlight={!!winner && winner === p1} />
-      <Slot name={p2} align={align} highlight={!!winner && winner === p2} />
+    <div className="relative flex flex-col justify-center">
+      <div className="rounded-md border border-gold/15 bg-background/60 p-1 space-y-1 shadow-sm">
+        <Slot name={m.p1} highlight={!!m.winner && m.winner === m.p1} compact />
+        <Slot name={m.p2} highlight={!!m.winner && m.winner === m.p2} compact />
+      </div>
+      {showConnector && (
+        <div className="absolute left-full top-1/2 -translate-y-1/2 w-2 sm:w-3 h-px bg-gold/25" />
+      )}
     </div>
   );
 }
 
-function RoundColumn({
-  title,
+function BracketColumn({
+  label,
   matches,
-  align = "left",
-  gap = "gap-3",
+  isLast,
 }: {
-  title: string;
+  label: string;
   matches: Match[];
-  align?: "left" | "right";
-  gap?: string;
+  isLast?: boolean;
 }) {
   return (
-    <div className="flex-1 min-w-[150px]">
-      <div className={`text-[10px] font-bold tracking-[0.3em] text-gold/70 mb-3 ${align === "right" ? "text-right" : "text-left"}`}>
-        {title}
+    <div className="flex flex-col shrink-0 w-[110px] sm:w-[140px]">
+      <div className="text-[9px] font-bold tracking-[0.25em] text-gold/70 mb-3 text-center uppercase">
+        {label}
       </div>
-      <div className={`flex flex-col justify-around h-full ${gap}`}>
+      <div className="flex flex-col justify-around flex-1 gap-1">
         {matches.map((m, i) => (
-          <MatchCard key={i} match={m} align={align} />
+          <BracketMatch key={i} m={m} showConnector={!isLast} />
         ))}
       </div>
     </div>
   );
 }
 
-function SideBracket({ side, orientation }: { side: BracketSide; orientation: "left" | "right" }) {
-  const align = orientation === "left" ? "left" : "right";
-  const cols = (
-    <>
-      <RoundColumn title="16vos" matches={side.dieciseisavos} align={align} gap="gap-2" />
-      <RoundColumn title="Octavos" matches={side.octavos} align={align} gap="gap-8" />
-      <RoundColumn title="Cuartos" matches={side.cuartos} align={align} gap="gap-24" />
-      <RoundColumn title="Semifinal" matches={side.semifinal} align={align} gap="gap-4" />
-    </>
-  );
+function BracketTree({ title, side }: { title: string; side: BracketSide }) {
+  const finalistMatch: Match = { p1: side.finalista, p2: "" };
   return (
-    <div className="flex gap-3 sm:gap-4">
-      {orientation === "left" ? cols : <div className="flex gap-3 sm:gap-4 flex-row-reverse w-full">{cols}</div>}
+    <div>
+      <div className="text-center text-[10px] font-bold tracking-[0.4em] text-gold/80 mb-4">
+        {title.toUpperCase()}
+      </div>
+      <div className="overflow-x-auto -mx-2 px-2 pb-2">
+        <div className="flex gap-2 sm:gap-3 min-w-[620px] h-[520px] sm:h-[600px]">
+          <BracketColumn label="16vos" matches={side.dieciseisavos} />
+          <BracketColumn label="Octavos" matches={side.octavos} />
+          <BracketColumn label="Cuartos" matches={side.cuartos} />
+          <BracketColumn label="Semifinal" matches={side.semifinal} />
+          <BracketColumn label="Finalista" matches={[finalistMatch]} isLast />
+        </div>
+      </div>
     </div>
   );
 }
@@ -170,11 +176,10 @@ export function PlayoffBracket() {
       </div>
 
       <div className="card-nebula rounded-3xl p-4 md:p-8 bg-background/40 border border-gold/15 shadow-xl">
-        {/* Llaves apiladas: izquierda arriba, final al medio, derecha abajo */}
+        <div className="space-y-10">
+          <BracketTree title="Llave Izquierda" side={LLAVE_IZQUIERDA} />
 
-        <div className="space-y-8">
-          <SideMobile title="Llave Izquierda" side={LLAVE_IZQUIERDA} />
-          <div className="flex flex-col items-center gap-2 py-4 border-y border-gold/10">
+          <div className="flex flex-col items-center gap-2 py-6 border-y border-gold/10">
             <Trophy className="w-7 h-7 text-gold" />
             <div className="text-[10px] font-bold tracking-[0.4em] text-gold/80">GRAN FINAL</div>
             <div className="w-full max-w-sm space-y-2">
@@ -193,44 +198,13 @@ export function PlayoffBracket() {
               </div>
             </div>
           </div>
-          <SideMobile title="Llave Derecha" side={LLAVE_DERECHA} />
+
+          <BracketTree title="Llave Derecha" side={LLAVE_DERECHA} />
         </div>
 
         <p className="text-center text-[11px] text-muted-foreground/60 italic mt-6 border-t border-gold/10 pt-4">
           Los nombres de las rondas siguientes se irán completando conforme avancen los combates.
         </p>
-      </div>
-    </div>
-  );
-}
-
-function SideMobile({ title, side }: { title: string; side: BracketSide }) {
-  const rounds: { label: string; matches: Match[] }[] = [
-    { label: "16vos de final", matches: side.dieciseisavos },
-    { label: "Octavos de final", matches: side.octavos },
-    { label: "Cuartos de final", matches: side.cuartos },
-    { label: "Semifinal", matches: side.semifinal },
-  ];
-  return (
-    <div>
-      <div className="text-center text-[10px] font-bold tracking-[0.4em] text-gold/80 mb-4">
-        {title.toUpperCase()}
-      </div>
-      <div className="space-y-4">
-        {rounds.map((r) => (
-          <div key={r.label}>
-            <div className="text-[10px] font-bold tracking-[0.3em] text-gold/70 mb-2">{r.label.toUpperCase()}</div>
-            <div className="grid gap-2 sm:grid-cols-2">
-              {r.matches.map((m, i) => (
-                <div key={i} className="rounded-lg border border-gold/10 bg-background/60 p-2 space-y-1">
-                  <Slot name={m.p1} highlight={!!m.winner && m.winner === m.p1} />
-                  <div className="text-center text-[10px] text-gold/50 font-bold">VS</div>
-                  <Slot name={m.p2} highlight={!!m.winner && m.winner === m.p2} />
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
       </div>
     </div>
   );
