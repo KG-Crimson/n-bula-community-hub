@@ -31,16 +31,16 @@ type BracketSide = {
 const LLAVE_IZQUIERDA: BracketSide = {
   dieciseisavos: [
     { p1: "Therobert_03", p2: "SouthSeba" },
-    { p1: "Yoni",         p2: "Zihul" },
-    { p1: "Elyoru",       p2: "Nico" },
-    { p1: "toto",         p2: "Atomic" },
+    { p1: "Yoni", p2: "Zihul" },
+    { p1: "Elyoru", p2: "Nico" },
+    { p1: "toto", p2: "Atomic" },
     { p1: "Heartless2202", p2: "Sotogamer" },
-    { p1: "Sebax",        p2: "Alexis" },
-    { p1: "Escueltel",    p2: "JoseEduby" },
-    { p1: "Tezcat",       p2: "Alastor" },
+    { p1: "Sebax", p2: "Alexis" },
+    { p1: "Escueltel", p2: "JoseEduby" },
+    { p1: "Tezcat", p2: "Alastor" },
   ],
   octavos: [
-    { p1: "", p2: "" },
+    { p1: "SouthSeba", p2: "" },
     { p1: "", p2: "" },
     { p1: "", p2: "" },
     { p1: "", p2: "" },
@@ -49,22 +49,20 @@ const LLAVE_IZQUIERDA: BracketSide = {
     { p1: "", p2: "" },
     { p1: "", p2: "" },
   ],
-  semifinal: [
-    { p1: "", p2: "" },
-  ],
+  semifinal: [{ p1: "", p2: "" }],
   finalista: "",
 };
 
 const LLAVE_DERECHA: BracketSide = {
   dieciseisavos: [
-    { p1: "Uyitoo",     p2: "Duque" },
-    { p1: "Fher-Mrtz",  p2: "Carcrak" },
-    { p1: "Just-TKZ",   p2: "Lanfirer" },
-    { p1: "Daren",      p2: "Ral" },
-    { p1: "Desca",      p2: "Andueza" },
-    { p1: "Nikolas",    p2: "Zanenuss" },
-    { p1: "Aroyuuki",   p2: "Crimson" },
-    { p1: "Josk",       p2: "JoseVGC" },
+    { p1: "Uyitoo", p2: "Duque" },
+    { p1: "Fher-Mrtz", p2: "Carcrak" },
+    { p1: "Just-TKZ", p2: "Lanfirer" },
+    { p1: "Daren", p2: "Ral" },
+    { p1: "Desca", p2: "Andueza" },
+    { p1: "Nikolas", p2: "Zanenuss" },
+    { p1: "Aroyuuki", p2: "Crimson" },
+    { p1: "Josk", p2: "JoseVGC" },
   ],
   octavos: [
     { p1: "", p2: "" },
@@ -76,9 +74,7 @@ const LLAVE_DERECHA: BracketSide = {
     { p1: "", p2: "" },
     { p1: "", p2: "" },
   ],
-  semifinal: [
-    { p1: "", p2: "" },
-  ],
+  semifinal: [{ p1: "", p2: "" }],
   finalista: "",
 };
 
@@ -112,27 +108,15 @@ function BracketMatch({ m, showConnector }: { m: Match; showConnector?: boolean 
         <Slot name={m.p1} highlight={!!m.winner && m.winner === m.p1} compact />
         <Slot name={m.p2} highlight={!!m.winner && m.winner === m.p2} compact />
       </div>
-      {showConnector && (
-        <div className="absolute left-full top-1/2 -translate-y-1/2 w-2 sm:w-3 h-px bg-gold/25" />
-      )}
+      {showConnector && <div className="absolute left-full top-1/2 -translate-y-1/2 w-2 sm:w-3 h-px bg-gold/25" />}
     </div>
   );
 }
 
-function BracketColumn({
-  label,
-  matches,
-  isLast,
-}: {
-  label: string;
-  matches: Match[];
-  isLast?: boolean;
-}) {
+function BracketColumn({ label, matches, isLast }: { label: string; matches: Match[]; isLast?: boolean }) {
   return (
     <div className="flex flex-col shrink-0 w-[110px] sm:w-[140px]">
-      <div className="text-[9px] font-bold tracking-[0.25em] text-gold/70 mb-3 text-center uppercase">
-        {label}
-      </div>
+      <div className="text-[9px] font-bold tracking-[0.25em] text-gold/70 mb-3 text-center uppercase">{label}</div>
       <div className="flex flex-col justify-around flex-1 gap-1">
         {matches.map((m, i) => (
           <BracketMatch key={i} m={m} showConnector={!isLast} />
@@ -146,9 +130,7 @@ function BracketTree({ title, side }: { title: string; side: BracketSide }) {
   const finalistMatch: Match = { p1: side.finalista, p2: "" };
   return (
     <div>
-      <div className="text-center text-[10px] font-bold tracking-[0.4em] text-gold/80 mb-4">
-        {title.toUpperCase()}
-      </div>
+      <div className="text-center text-[10px] font-bold tracking-[0.4em] text-gold/80 mb-4">{title.toUpperCase()}</div>
       <div className="overflow-x-auto -mx-2 px-2 pb-2">
         <div className="flex gap-2 sm:gap-3 min-w-[620px] h-[520px] sm:h-[600px]">
           <BracketColumn label="16vos" matches={side.dieciseisavos} />
@@ -167,12 +149,8 @@ export function PlayoffBracket() {
     <div className="mt-12">
       <div className="text-center mb-8">
         <div className="text-[10px] font-bold tracking-[0.4em] text-gold mb-3">PLAY OFF</div>
-        <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-purple-gradient">
-          LLAVES DE ELIMINACIÓN
-        </h3>
-        <p className="text-muted-foreground text-xs sm:text-sm mt-3 px-4">
-          16vos de final · 32 clasificados
-        </p>
+        <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-purple-gradient">LLAVES DE ELIMINACIÓN</h3>
+        <p className="text-muted-foreground text-xs sm:text-sm mt-3 px-4">16vos de final · 32 clasificados</p>
       </div>
 
       <div className="card-nebula rounded-3xl p-4 md:p-8 bg-background/40 border border-gold/15 shadow-xl">
@@ -189,11 +167,13 @@ export function PlayoffBracket() {
             </div>
             <div className="mt-2 w-full max-w-sm text-center">
               <div className="text-[10px] font-bold tracking-[0.3em] text-gold/70 mb-2">CAMPEÓN</div>
-              <div className={`px-3 py-2 rounded-md text-sm font-bold border ${
-                CAMPEON
-                  ? "bg-gold/20 text-gold border-gold/50 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
-                  : "bg-background/40 text-muted-foreground/50 border-gold/10 italic"
-              }`}>
+              <div
+                className={`px-3 py-2 rounded-md text-sm font-bold border ${
+                  CAMPEON
+                    ? "bg-gold/20 text-gold border-gold/50 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+                    : "bg-background/40 text-muted-foreground/50 border-gold/10 italic"
+                }`}
+              >
                 {CAMPEON || "Por definir"}
               </div>
             </div>
