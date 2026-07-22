@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChevronDown, Swords, Trophy, Shield, Sparkles, Gauge, Gavel, Gift, Skull, Target, ShieldCheck } from "lucide-react";
+import { PlayoffBracket } from "./PlayoffBracket";
 
 type Partido = {
   ronda: string;
