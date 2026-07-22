@@ -40,7 +40,7 @@ const LLAVE_IZQUIERDA: BracketSide = {
     { p1: "Tezcat", p2: "Alastor" },
   ],
   octavos: [
-    { p1: "SouthSeba", p2: "" },
+    { p1: "", p2: "" },
     { p1: "", p2: "" },
     { p1: "", p2: "" },
     { p1: "", p2: "" },
