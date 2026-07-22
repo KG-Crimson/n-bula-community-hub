@@ -170,45 +170,9 @@ export function PlayoffBracket() {
       </div>
 
       <div className="card-nebula rounded-3xl p-4 md:p-8 bg-background/40 border border-gold/15 shadow-xl">
-        {/* Desktop / tablet: llaves en espejo con la final al centro */}
-        <div className="hidden lg:flex items-stretch gap-4">
-          <div className="flex-1">
-            <div className="text-center text-[10px] font-bold tracking-[0.4em] text-gold/80 mb-4">
-              LLAVE IZQUIERDA
-            </div>
-            <SideBracket side={LLAVE_IZQUIERDA} orientation="left" />
-          </div>
+        {/* Llaves apiladas: izquierda arriba, final al medio, derecha abajo */}
 
-          <div className="flex flex-col items-center justify-center min-w-[180px] px-2">
-            <Trophy className="w-8 h-8 text-gold mb-3" />
-            <div className="text-[10px] font-bold tracking-[0.4em] text-gold/80 mb-3">GRAN FINAL</div>
-            <div className="w-full space-y-2">
-              <Slot name={LLAVE_IZQUIERDA.finalista} highlight={!!CAMPEON && CAMPEON === LLAVE_IZQUIERDA.finalista} />
-              <div className="text-center text-[10px] text-gold/60 font-bold">VS</div>
-              <Slot name={LLAVE_DERECHA.finalista} highlight={!!CAMPEON && CAMPEON === LLAVE_DERECHA.finalista} align="right" />
-            </div>
-            <div className="mt-4 w-full text-center">
-              <div className="text-[10px] font-bold tracking-[0.3em] text-gold/70 mb-2">CAMPEÓN</div>
-              <div className={`px-3 py-2 rounded-md text-sm font-bold border ${
-                CAMPEON
-                  ? "bg-gold/20 text-gold border-gold/50 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
-                  : "bg-background/40 text-muted-foreground/50 border-gold/10 italic"
-              }`}>
-                {CAMPEON || "Por definir"}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex-1">
-            <div className="text-center text-[10px] font-bold tracking-[0.4em] text-gold/80 mb-4">
-              LLAVE DERECHA
-            </div>
-            <SideBracket side={LLAVE_DERECHA} orientation="right" />
-          </div>
-        </div>
-
-        {/* Mobile / tablet: llaves apiladas */}
-        <div className="lg:hidden space-y-8">
+        <div className="space-y-8">
           <SideMobile title="Llave Izquierda" side={LLAVE_IZQUIERDA} />
           <div className="flex flex-col items-center gap-2 py-4 border-y border-gold/10">
             <Trophy className="w-7 h-7 text-gold" />
