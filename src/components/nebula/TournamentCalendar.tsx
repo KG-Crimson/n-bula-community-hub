@@ -398,6 +398,7 @@ export function TournamentCalendar() {
 
         </div>
 
+        <PlayoffBracket />
         <RulesAccordion />
         <RewardsSection />
       </div>
